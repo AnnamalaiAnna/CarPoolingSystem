@@ -18,7 +18,7 @@ public class SearchCustomerGUI extends javax.swing.JFrame {
     public SearchCustomerGUI() {
         initComponents();
     }
-    public SearchCustomerGUI(CarpoolingSystem cs)
+    public SearchCustomerGUI(CarPoolingSystem cs)
     {
         this();
         this.cs=cs;
@@ -221,5 +221,5 @@ public class SearchCustomerGUI extends javax.swing.JFrame {
     private javax.swing.JTextField jTextField4;
     private javax.swing.JTextField jTextField5;
     // End of variables declaration//GEN-END:variables
-private CarpoolingSystem cs;
+private CarPoolingSystem cs;
 }
