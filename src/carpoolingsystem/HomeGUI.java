@@ -168,5 +168,5 @@ public class HomeGUI extends javax.swing.JFrame {
     private javax.swing.JButton b_searchSched;
     private javax.swing.JLabel jLabel1;
     // End of variables declaration//GEN-END:variables
-private CarpoolingSystem cs ;
+private CarPoolingSystem cs ;
 }
