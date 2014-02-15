@@ -18,9 +18,15 @@ public class CarPoolingSystem {
     public double costpermile = 5.2;
     //public LinkedList<Customer> Customerlist = new LinkedList>Customer>();
     
-    public void addCust(customer c){}
+    enum Type {
+        Driver,
+        Passenger
+    }
     
-    public void addRide(ride r){ }
+    
+    public void addCust(Customer c){}
+    
+    public void addRide(Ride r){ }
     
     public void searchCust(int customerId, String fName, String lName, String email, String mobile){}
     
@@ -28,7 +34,7 @@ public class CarPoolingSystem {
     
     public void getAvailableRide(Date sDate, Date eDate, String origin, String dest){}
     
-    public void validateCust(int customerId, type){}
+    public void validateCust(int customerId, Type type){}
     
     public void searchRide(Customer c){}
     
