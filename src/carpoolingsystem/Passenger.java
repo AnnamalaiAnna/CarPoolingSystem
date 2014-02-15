@@ -6,18 +6,20 @@
 
 package carpoolingsystem;
 
+import java.util.*;
 /**
  *
  * @author Rajesh
  */
 public class Passenger extends Customer {
     private boolean smokingPref;
-    //private LinkedList<Schedule> scheduleList = new LinkedList<Schedule>();
+    private LinkedList<Schedule> scheduleList = new LinkedList<Schedule>();
     public Schedule getActiveSched()
     {
-        return Schedule;
+        Schedule s = null;
+        return s;
     }
-    public void getActiveSched()
+    public void addSched()
     {
         
     }
