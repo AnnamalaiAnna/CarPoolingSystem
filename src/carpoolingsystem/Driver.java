@@ -17,10 +17,11 @@ public class Driver extends Customer
     private String dlNumber;
     private String carNumber;
     private String insurance;
-    //private LinkedList<Ride> rideList = new LinkedList<Ride>();
+    private LinkedList<Ride> rideList = new LinkedList<Ride>();
 public Ride getActiveRide()
 {
-    return Ride a;
+    Ride a = null;
+    return a;
 }
 public void addRide()
 {
