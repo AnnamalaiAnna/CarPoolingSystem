@@ -9,6 +9,7 @@ package carpoolingsystem;
 import java.awt.List;
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.LinkedList;
 
 /**
  *
@@ -16,7 +17,7 @@ import java.util.Date;
  */
 public class Ride {
     Driver drv;
-    List<Schedule> schedList = new ArrayList<Schedule>();
+    LinkedList<Schedule> schedList = new LinkedList<Schedule>();
     String origin;
     String dest;
     int capacity;
