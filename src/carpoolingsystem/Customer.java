@@ -3,7 +3,6 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-
 package carpoolingsystem;
 
 import java.util.*;
@@ -13,39 +12,133 @@ import java.util.*;
  * @author Rajesh
  */
 abstract public class Customer {
-    private int customerId;
+
+    private static long custIdGenerator = 0;
+    private final long customerId;
     private String fName;
     private String lName;
-    private Date dob; 
-    enum sex{Male,Female};
-    private sex value;
+    private Date dob;
+    private Gender sex;
     private String email;
     private String mobile;
     private String address;
-    private boolean bustStatus;
+    private boolean status;
+
+    public long getCustomerId() {
+        return customerId;
+    }
+
+    public String getfName() {
+        return fName;
+    }
+
+    public void setfName(String fName) {
+        this.fName = fName;
+    }
+
+    public String getlName() {
+        return lName;
+    }
+
+    public void setlName(String lName) {
+        this.lName = lName;
+    }
+
+    public Date getDob() {
+        return dob;
+    }
+
+    public void setDob(Date dob) {
+        this.dob = dob;
+    }
+
+    public Gender getSex() {
+        return sex;
+    }
+
+    public void setSex(Gender sex) {
+        this.sex = sex;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
+    public String getMobile() {
+        return mobile;
+    }
+
+    public void setMobile(String mobile) {
+        this.mobile = mobile;
+    }
+
+    public String getAddress() {
+        return address;
+    }
+
+    public void setAddress(String address) {
+        this.address = address;
+    }
+
+    public boolean isCustStatus() {
+        return status;
+    }
+
+    public void setCustomerStatus(boolean status) {
+        this.status = status;
+    }
+
+    enum Gender {
+
+        Male, Female, Undefined
+    };
+
     //private LinkedList<Review> reviewList = new LinkedList<Review>();
-    public void modifyCust(String fName,String lName,sex value, Date dob, String email, String mobile, String address)
-    {
-        
+    public Customer() {
+        this.customerId = generateCustomerId();
+        this.fName = null;
+        this.lName = null;
+        this.dob = null;
+        this.sex = Gender.Undefined;
+        this.email = null;
+        this.mobile = null;
+        this.address = null;
+        this.status = true;
     }
-    
-    public void deleteCust()
-    {
-        
+
+    public Customer(String fName, String lName, Date dob, Gender sex, String email, String mobile, String address) {
+        this.customerId = generateCustomerId();
+        this.fName = fName;
+        this.lName = lName;
+        this.dob = dob;
+        this.sex = sex;
+        this.email = email;
+        this.mobile = mobile;
+        this.address = address;
+        this.status = true;
     }
-    
-    public void changeCustStatus()
-    {
-        
+
+    public abstract void modifyCustomer(String fName, String lName, Gender sex, Date dob, String email, String mobile, String address, String dlNumber, String carNumber, String insurance, boolean smokingPref);
+
+    public abstract void deactivateCustomer();
+
+    public void disableCustomer() {
+        this.status = false;
     }
-    
-    public void searchReview()
-    {
-        
+
+    public void searchReview() {
+
     }
-    
-    public void addReview()
-    {
-        
+
+    public void addReview() {
+
+    }
+
+    private long generateCustomerId() {
+        return custIdGenerator += 1;
     }
 }
