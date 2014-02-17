@@ -18,6 +18,14 @@ public class SearchScheduleGUI extends javax.swing.JFrame {
     public SearchScheduleGUI() {
         initComponents();
     }
+     public SearchScheduleGUI(CarPoolingSystem cs,HomeGUI homegui)
+    {
+        this();
+        this.cs=cs;
+        this.homegui= homegui;
+        homegui.setEnabled(false);
+        
+    }
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -54,7 +62,12 @@ public class SearchScheduleGUI extends javax.swing.JFrame {
         jButton4 = new javax.swing.JButton();
         jButton5 = new javax.swing.JButton();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        addWindowListener(new java.awt.event.WindowAdapter() {
+            public void windowClosing(java.awt.event.WindowEvent evt) {
+                formWindowClosing(evt);
+            }
+        });
 
         jLabel1.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
         jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
@@ -65,6 +78,11 @@ public class SearchScheduleGUI extends javax.swing.JFrame {
         jButton1.setText("Search");
 
         jButton2.setText("Cancel");
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton2ActionPerformed(evt);
+            }
+        });
 
         jLabel3.setText("Driver Id");
 
@@ -214,6 +232,18 @@ public class SearchScheduleGUI extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+        // TODO add your handling code here:
+        homegui.setEnabled(true);
+        this.dispose();
+    }//GEN-LAST:event_jButton2ActionPerformed
+
+    private void formWindowClosing(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowClosing
+        // TODO add your handling code here:
+        homegui.setEnabled(true);
+        this.dispose();
+    }//GEN-LAST:event_formWindowClosing
+
     /**
      * @param args the command line arguments
      */
@@ -276,4 +306,6 @@ public class SearchScheduleGUI extends javax.swing.JFrame {
     private org.jdesktop.swingx.JXDatePicker jXDatePicker1;
     private org.jdesktop.swingx.JXDatePicker jXDatePicker2;
     // End of variables declaration//GEN-END:variables
+private CarPoolingSystem cs;
+HomeGUI homegui;
 }

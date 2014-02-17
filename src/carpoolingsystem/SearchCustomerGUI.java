@@ -15,13 +15,17 @@ public class SearchCustomerGUI extends javax.swing.JFrame {
     /**
      * Creates new form SearchCustomer
      */
+    HomeGUI homegui;
     public SearchCustomerGUI() {
         initComponents();
     }
-    public SearchCustomerGUI(CarPoolingSystem cs)
+    public SearchCustomerGUI(CarPoolingSystem cs,HomeGUI homegui)
     {
         this();
         this.cs=cs;
+        this.homegui= homegui;
+        homegui.setEnabled(false);
+        
     }
 
     /**
@@ -50,7 +54,12 @@ public class SearchCustomerGUI extends javax.swing.JFrame {
         jScrollPane1 = new javax.swing.JScrollPane();
         jList1 = new javax.swing.JList();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        addWindowListener(new java.awt.event.WindowAdapter() {
+            public void windowClosing(java.awt.event.WindowEvent evt) {
+                formWindowClosing(evt);
+            }
+        });
 
         jLabel1.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
         jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
@@ -69,6 +78,11 @@ public class SearchCustomerGUI extends javax.swing.JFrame {
         jLabel8.setText("Ph Number");
 
         jButton4.setText("Cancel");
+        jButton4.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton4ActionPerformed(evt);
+            }
+        });
 
         jList1.setModel(new javax.swing.AbstractListModel() {
             String[] strings = { "Result 1", "Result 2", "Result 3", "Result 4", "Result 5" };
@@ -168,6 +182,23 @@ public class SearchCustomerGUI extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
+        // TODO add your handling code here:
+        homegui.setEnabled(true);
+        this.dispose(); 
+        
+    }//GEN-LAST:event_jButton4ActionPerformed
+
+    private void formWindowClosing(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowClosing
+        // TODO add your handling code here:
+        homegui.setEnabled(true);
+        this.dispose();
+    }//GEN-LAST:event_formWindowClosing
+//     frame.addWindowListener(new WindowAdapter){
+//    public void windowClosing(java.awt.event.WindowEvent windowEvent){
+// homegui.setEnabled(true);
+//        this.dispose();
+// }}
     /**
      * @param args the command line arguments
      */
