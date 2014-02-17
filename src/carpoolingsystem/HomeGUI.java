@@ -15,6 +15,8 @@ public class HomeGUI extends javax.swing.JFrame {
     /**
      * Creates new form Home
      */
+    
+    static HomeGUI homegui;
     public HomeGUI() {
         initComponents();
     }
@@ -36,6 +38,7 @@ public class HomeGUI extends javax.swing.JFrame {
         b_generateReport = new javax.swing.JButton();
         b_createCust = new javax.swing.JButton();
         b_review = new javax.swing.JButton();
+        jButton1 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -44,10 +47,25 @@ public class HomeGUI extends javax.swing.JFrame {
         jLabel1.setText("Carpooling System");
 
         b_searchForRideMatch.setText("Search For Ride Match");
+        b_searchForRideMatch.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                b_searchForRideMatchActionPerformed(evt);
+            }
+        });
 
         b_searchSched.setText("Search Schedule");
+        b_searchSched.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                b_searchSchedActionPerformed(evt);
+            }
+        });
 
         b_searchRide.setText("Search Ride");
+        b_searchRide.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                b_searchRideActionPerformed(evt);
+            }
+        });
 
         b_searchCust.setText("Search Customer");
         b_searchCust.addActionListener(new java.awt.event.ActionListener() {
@@ -57,10 +75,32 @@ public class HomeGUI extends javax.swing.JFrame {
         });
 
         b_generateReport.setText("Generate Report");
+        b_generateReport.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                b_generateReportActionPerformed(evt);
+            }
+        });
 
         b_createCust.setText("Create Customer");
+        b_createCust.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                b_createCustActionPerformed(evt);
+            }
+        });
 
         b_review.setText("Review");
+        b_review.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                b_reviewActionPerformed(evt);
+            }
+        });
+
+        jButton1.setText("EXIT");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -84,14 +124,19 @@ public class HomeGUI extends javax.swing.JFrame {
                                 .addGap(27, 27, 27)
                                 .addComponent(b_searchRide, javax.swing.GroupLayout.PREFERRED_SIZE, 145, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(18, 18, 18)
-                                .addComponent(b_searchForRideMatch, javax.swing.GroupLayout.PREFERRED_SIZE, 145, javax.swing.GroupLayout.PREFERRED_SIZE)))))
+                                .addComponent(b_searchForRideMatch, javax.swing.GroupLayout.PREFERRED_SIZE, 145, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(58, 58, 58)
+                                .addComponent(b_generateReport, javax.swing.GroupLayout.PREFERRED_SIZE, 145, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(61, 61, 61)
+                                .addComponent(b_review, javax.swing.GroupLayout.PREFERRED_SIZE, 145, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(198, 198, 198)
+                                .addComponent(jButton1)))
+                        .addGap(0, 0, Short.MAX_VALUE)))
                 .addContainerGap())
-            .addGroup(layout.createSequentialGroup()
-                .addGap(58, 58, 58)
-                .addComponent(b_generateReport, javax.swing.GroupLayout.PREFERRED_SIZE, 145, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(61, 61, 61)
-                .addComponent(b_review, javax.swing.GroupLayout.PREFERRED_SIZE, 145, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -111,7 +156,9 @@ public class HomeGUI extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(b_generateReport, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(b_review, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(95, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 39, Short.MAX_VALUE)
+                .addComponent(jButton1)
+                .addGap(33, 33, 33))
         );
 
         pack();
@@ -119,9 +166,54 @@ public class HomeGUI extends javax.swing.JFrame {
 
     private void b_searchCustActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_b_searchCustActionPerformed
         // TODO add your handling code here:
-        SearchCustomerGUI sc = new SearchCustomerGUI();
+        SearchCustomerGUI sc = new SearchCustomerGUI(cs,homegui);
+        
         sc.setVisible(true);
+        
+        
+        
     }//GEN-LAST:event_b_searchCustActionPerformed
+
+    private void b_createCustActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_b_createCustActionPerformed
+        // TODO add your handling code here:
+        CreateCustomerGUI sc = new CreateCustomerGUI(cs,homegui);
+        sc.setVisible(true);
+    }//GEN-LAST:event_b_createCustActionPerformed
+
+    private void b_searchSchedActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_b_searchSchedActionPerformed
+        // TODO add your handling code here:
+        SearchScheduleGUI sc = new SearchScheduleGUI(cs,homegui);
+        sc.setVisible(true);
+    }//GEN-LAST:event_b_searchSchedActionPerformed
+
+    private void b_searchRideActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_b_searchRideActionPerformed
+        // TODO add your handling code here:
+        SearchRideGUI sc = new SearchRideGUI(cs,homegui);
+        sc.setVisible(true);
+    }//GEN-LAST:event_b_searchRideActionPerformed
+
+    private void b_searchForRideMatchActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_b_searchForRideMatchActionPerformed
+        // TODO add your handling code here:
+        SearchRideMatchGUI sc = new SearchRideMatchGUI(cs,homegui);
+        sc.setVisible(true);
+    }//GEN-LAST:event_b_searchForRideMatchActionPerformed
+
+    private void b_generateReportActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_b_generateReportActionPerformed
+        // TODO add your handling code here:
+        ReportsGUI sc = new ReportsGUI(cs,homegui);
+        sc.setVisible(true);
+    }//GEN-LAST:event_b_generateReportActionPerformed
+
+    private void b_reviewActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_b_reviewActionPerformed
+        // TODO add your handling code here:
+        SearchRideMatchGUI sc = new SearchRideMatchGUI(cs,homegui);
+        sc.setVisible(true);
+    }//GEN-LAST:event_b_reviewActionPerformed
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        // TODO add your handling code here:
+        System.exit(0);
+    }//GEN-LAST:event_jButton1ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -153,7 +245,10 @@ public class HomeGUI extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new HomeGUI().setVisible(true);
+                
+//            new HomeGUI().setVisible(true);
+        homegui= new HomeGUI();
+        homegui.setVisible(true);
             }
         });
     }
@@ -166,6 +261,7 @@ public class HomeGUI extends javax.swing.JFrame {
     private javax.swing.JButton b_searchForRideMatch;
     private javax.swing.JButton b_searchRide;
     private javax.swing.JButton b_searchSched;
+    private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
     // End of variables declaration//GEN-END:variables
 private CarPoolingSystem cs ;
