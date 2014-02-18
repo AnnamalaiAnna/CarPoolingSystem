@@ -68,11 +68,12 @@ public class CarPoolingSystem implements Serializable {
 
     public static void serialize(Object obj, String filePath) {
         try {
-            FileOutputStream fos = new FileOutputStream(filePath);
-            ObjectOutputStream oos = new ObjectOutputStream(fos);
-            oos.writeObject(obj);
-            fos.close();
-        } catch (Exception ex) {
+            try (FileOutputStream fos = new FileOutputStream(filePath)) {
+                ObjectOutputStream oos = new ObjectOutputStream(fos);
+                oos.writeObject(obj);
+                oos.close();
+            }
+        } catch (IOException ex) {
             JOptionPane.showMessageDialog(null, ex.getMessage(), "EXCEPTION", JOptionPane.ERROR_MESSAGE);
         }
     }
@@ -105,6 +106,9 @@ public class CarPoolingSystem implements Serializable {
 
     public LinkedList<Customer> searchCustomer(long customerId, String fName, String lName, String email, String mobile) {
         LinkedList<Customer> returnList = new LinkedList<Customer>();
+        if (customerId == 0) {
+            return Customerlist;
+        }
         for (Customer customer : Customerlist) {
             if ((customerId > 0) && (customer.getCustomerId() == customerId)) {
                 returnList.add(customer);
