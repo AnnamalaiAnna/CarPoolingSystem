@@ -5,13 +5,14 @@
  */
 package carpoolingsystem;
 
+import java.io.Serializable;
 import java.util.*;
 
 /**
  *
  * @author Rajesh
  */
-abstract public class Customer {
+abstract public class Customer implements Serializable{
 
     private static long custIdGenerator = 0;
     private final long customerId;
