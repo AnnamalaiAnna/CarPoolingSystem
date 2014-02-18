@@ -5,15 +5,27 @@
  */
 package carpoolingsystem;
 
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
+import java.io.Serializable;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.util.Date;
 import java.util.LinkedList;
 import org.jdesktop.swingx.JXLoginPane.Status;
+import javax.swing.JOptionPane;
 
 /**
  *
  * @author Nagul
  */
-public class CarPoolingSystem {
+public class CarPoolingSystem implements Serializable {
 
     public double costpermile;
     public LinkedList<Customer> Customerlist = new LinkedList<Customer>();
@@ -22,6 +34,58 @@ public class CarPoolingSystem {
 
         Driver,
         Passenger
+    }
+
+    public static void main(String[] args) throws IOException {
+        
+        CarPoolingSystem cps = (CarPoolingSystem) deSerialize("CarPoolingSystem.dat");
+        if (cps == null) {
+            cps = new CarPoolingSystem(5.2);
+        }
+        //checkAndCreateFileSystem();
+        HomeGUI home = new HomeGUI(cps);
+        home.setVisible(true);
+    }
+
+    public static Object deSerialize(String filePath) {
+        Path cpsFile = Paths.get(filePath);
+        if (Files.notExists(cpsFile)) {
+            return null;
+        } else {
+            try {
+                FileInputStream fis = new FileInputStream(filePath);
+                Object o;
+                try (ObjectInputStream ois = new ObjectInputStream(fis)) {
+                    o = ois.readObject();
+                }
+                return o;
+            } catch (Exception ex) {
+                JOptionPane.showMessageDialog(null, ex.getMessage(), "EXCEPTION", JOptionPane.ERROR_MESSAGE);
+                return null;
+            }
+        }
+    }
+
+    public static void serialize(Object obj, String filePath) {
+        try {
+            FileOutputStream fos = new FileOutputStream(filePath);
+            ObjectOutputStream oos = new ObjectOutputStream(fos);
+            oos.writeObject(obj);
+            fos.close();
+        } catch (Exception ex) {
+            JOptionPane.showMessageDialog(null, ex.getMessage(), "EXCEPTION", JOptionPane.ERROR_MESSAGE);
+        }
+    }
+
+    private static void checkAndCreateFileSystem() throws IOException {
+        //Path p1 = Paths.get("CarPoolingSystem.dat");
+//        if (Files.notExists(p1)) {
+//            JOptionPane.showMessageDialog(null, "File is present", "LOG", JOptionPane.INFORMATION_MESSAGE);
+//        } else {
+//            JOptionPane.showMessageDialog(null, "File is absent", "LOG", JOptionPane.INFORMATION_MESSAGE);
+//            File f = new File("CarPoolingSystem.dat");
+//            f.createNewFile();
+//        }
     }
 
     public CarPoolingSystem() {
