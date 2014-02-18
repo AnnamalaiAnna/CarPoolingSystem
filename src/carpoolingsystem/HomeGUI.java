@@ -3,8 +3,12 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-
 package carpoolingsystem;
+
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -15,10 +19,15 @@ public class HomeGUI extends javax.swing.JFrame {
     /**
      * Creates new form Home
      */
-    
     static HomeGUI homegui;
+
     public HomeGUI() {
         initComponents();
+    }
+
+    public HomeGUI(CarPoolingSystem cps) {
+        this();
+        this.cps = cps;
     }
 
     /**
@@ -41,6 +50,11 @@ public class HomeGUI extends javax.swing.JFrame {
         jButton1 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        addWindowListener(new java.awt.event.WindowAdapter() {
+            public void windowClosing(java.awt.event.WindowEvent evt) {
+                formWindowClosing(evt);
+            }
+        });
 
         jLabel1.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
         jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
@@ -166,54 +180,59 @@ public class HomeGUI extends javax.swing.JFrame {
 
     private void b_searchCustActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_b_searchCustActionPerformed
         // TODO add your handling code here:
-        SearchCustomerGUI sc = new SearchCustomerGUI(cs,homegui);
-        
+        SearchCustomerGUI sc = new SearchCustomerGUI(cps, this);
+
         sc.setVisible(true);
-        
-        
-        
+
+
     }//GEN-LAST:event_b_searchCustActionPerformed
 
     private void b_createCustActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_b_createCustActionPerformed
         // TODO add your handling code here:
-        CreateCustomerGUI sc = new CreateCustomerGUI(cs,homegui);
+        CreateCustomerGUI sc = new CreateCustomerGUI(cps, this);
         sc.setVisible(true);
     }//GEN-LAST:event_b_createCustActionPerformed
 
     private void b_searchSchedActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_b_searchSchedActionPerformed
         // TODO add your handling code here:
-        SearchScheduleGUI sc = new SearchScheduleGUI(cs,homegui);
+        SearchScheduleGUI sc = new SearchScheduleGUI(cps, this);
         sc.setVisible(true);
     }//GEN-LAST:event_b_searchSchedActionPerformed
 
     private void b_searchRideActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_b_searchRideActionPerformed
         // TODO add your handling code here:
-        SearchRideGUI sc = new SearchRideGUI(cs,homegui);
+        SearchRideGUI sc = new SearchRideGUI(cps, this);
         sc.setVisible(true);
     }//GEN-LAST:event_b_searchRideActionPerformed
 
     private void b_searchForRideMatchActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_b_searchForRideMatchActionPerformed
         // TODO add your handling code here:
-        SearchRideMatchGUI sc = new SearchRideMatchGUI(cs,homegui);
+        SearchRideMatchGUI sc = new SearchRideMatchGUI(cps, this);
         sc.setVisible(true);
     }//GEN-LAST:event_b_searchForRideMatchActionPerformed
 
     private void b_generateReportActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_b_generateReportActionPerformed
         // TODO add your handling code here:
-        ReportsGUI sc = new ReportsGUI(cs,homegui);
+        ReportsGUI sc = new ReportsGUI(cps, this);
         sc.setVisible(true);
     }//GEN-LAST:event_b_generateReportActionPerformed
 
     private void b_reviewActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_b_reviewActionPerformed
         // TODO add your handling code here:
-        SearchRideMatchGUI sc = new SearchRideMatchGUI(cs,homegui);
+        SearchRideMatchGUI sc = new SearchRideMatchGUI(cps, this);
         sc.setVisible(true);
     }//GEN-LAST:event_b_reviewActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
+        CarPoolingSystem.serialize(cps, "CarPoolingSystem.dat");
         System.exit(0);
     }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void formWindowClosing(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowClosing
+        CarPoolingSystem.serialize(cps, "CarPoolingSystem.dat");
+        //JOptionPane.showMessageDialog(null, "CLOSING", "EXCEPTION", JOptionPane.ERROR_MESSAGE);
+    }//GEN-LAST:event_formWindowClosing
 
     /**
      * @param args the command line arguments
@@ -245,10 +264,10 @@ public class HomeGUI extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                
+
 //            new HomeGUI().setVisible(true);
-        homegui= new HomeGUI();
-        homegui.setVisible(true);
+                homegui = new HomeGUI();
+                homegui.setVisible(true);
             }
         });
     }
@@ -264,5 +283,5 @@ public class HomeGUI extends javax.swing.JFrame {
     private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
     // End of variables declaration//GEN-END:variables
-private CarPoolingSystem cs ;
+    private CarPoolingSystem cps;
 }
