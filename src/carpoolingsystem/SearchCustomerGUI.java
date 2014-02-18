@@ -3,7 +3,6 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-
 package carpoolingsystem;
 
 /**
@@ -16,16 +15,17 @@ public class SearchCustomerGUI extends javax.swing.JFrame {
      * Creates new form SearchCustomer
      */
     HomeGUI homegui;
+
     public SearchCustomerGUI() {
         initComponents();
     }
-    public SearchCustomerGUI(CarPoolingSystem cs,HomeGUI homegui)
-    {
+
+    public SearchCustomerGUI(CarPoolingSystem cs, HomeGUI homegui) {
         this();
-        this.cs=cs;
-        this.homegui= homegui;
+        this.cs = cs;
+        this.homegui = homegui;
         homegui.setEnabled(false);
-        
+
     }
 
     /**
@@ -185,8 +185,8 @@ public class SearchCustomerGUI extends javax.swing.JFrame {
     private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
         // TODO add your handling code here:
         homegui.setEnabled(true);
-        this.dispose(); 
-        
+        this.dispose();
+
     }//GEN-LAST:event_jButton4ActionPerformed
 
     private void formWindowClosing(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowClosing
@@ -199,6 +199,7 @@ public class SearchCustomerGUI extends javax.swing.JFrame {
 // homegui.setEnabled(true);
 //        this.dispose();
 // }}
+
     /**
      * @param args the command line arguments
      */
