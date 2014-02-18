@@ -3,8 +3,9 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-
 package carpoolingsystem;
+
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -18,13 +19,13 @@ public class CreateCustomerGUI extends javax.swing.JFrame {
     public CreateCustomerGUI() {
         initComponents();
     }
-    public CreateCustomerGUI(CarPoolingSystem cs,HomeGUI homegui)
-    {
+
+    public CreateCustomerGUI(CarPoolingSystem cps, HomeGUI homegui) {
         this();
-        this.cs=cs;
-        this.homegui= homegui;
+        this.cps = cps;
+        this.homegui = homegui;
         homegui.setEnabled(false);
-        
+
     }
 
     /**
@@ -48,30 +49,30 @@ public class CreateCustomerGUI extends javax.swing.JFrame {
         jLabel6 = new javax.swing.JLabel();
         jLabel7 = new javax.swing.JLabel();
         jLabel8 = new javax.swing.JLabel();
-        jTextField1 = new javax.swing.JTextField();
-        jTextField2 = new javax.swing.JTextField();
-        jTextField3 = new javax.swing.JTextField();
+        tbFName = new javax.swing.JTextField();
+        tbLName = new javax.swing.JTextField();
+        tbEmail = new javax.swing.JTextField();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTextArea1 = new javax.swing.JTextArea();
-        jTextField4 = new javax.swing.JTextField();
-        jRadioButton1 = new javax.swing.JRadioButton();
-        jRadioButton2 = new javax.swing.JRadioButton();
-        jButton1 = new javax.swing.JButton();
-        jButton2 = new javax.swing.JButton();
-        jButton3 = new javax.swing.JButton();
-        jXDatePicker1 = new org.jdesktop.swingx.JXDatePicker();
+        taAddress = new javax.swing.JTextArea();
+        tbPhNum = new javax.swing.JTextField();
+        rbMale = new javax.swing.JRadioButton();
+        rbFemale = new javax.swing.JRadioButton();
+        btCreateCustomer = new javax.swing.JButton();
+        tbClearFields = new javax.swing.JButton();
+        tbCancel = new javax.swing.JButton();
+        dpDOB = new org.jdesktop.swingx.JXDatePicker();
         jLabel9 = new javax.swing.JLabel();
-        jRadioButton3 = new javax.swing.JRadioButton();
-        jRadioButton4 = new javax.swing.JRadioButton();
+        rbDriver = new javax.swing.JRadioButton();
+        rbPassenger = new javax.swing.JRadioButton();
         jLabel10 = new javax.swing.JLabel();
         jLabel11 = new javax.swing.JLabel();
         jLabel12 = new javax.swing.JLabel();
         jLabel13 = new javax.swing.JLabel();
-        jTextField7 = new javax.swing.JTextField();
-        jTextField8 = new javax.swing.JTextField();
-        jTextField9 = new javax.swing.JTextField();
-        jRadioButton5 = new javax.swing.JRadioButton();
-        jRadioButton6 = new javax.swing.JRadioButton();
+        tbCarNum = new javax.swing.JTextField();
+        tbInsurance = new javax.swing.JTextField();
+        tbDlLicenseNo = new javax.swing.JTextField();
+        rbSomokingPrefYes = new javax.swing.JRadioButton();
+        rbSmokingPrefNo = new javax.swing.JRadioButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         addWindowListener(new java.awt.event.WindowAdapter() {
@@ -98,47 +99,54 @@ public class CreateCustomerGUI extends javax.swing.JFrame {
 
         jLabel8.setText("Address");
 
-        jTextArea1.setColumns(20);
-        jTextArea1.setRows(5);
-        jScrollPane1.setViewportView(jTextArea1);
+        taAddress.setColumns(20);
+        taAddress.setRows(5);
+        jScrollPane1.setViewportView(taAddress);
 
-        buttonGroup1.add(jRadioButton1);
-        jRadioButton1.setText("Male");
+        buttonGroup1.add(rbMale);
+        rbMale.setText("Male");
 
-        buttonGroup1.add(jRadioButton2);
-        jRadioButton2.setText("Female");
+        buttonGroup1.add(rbFemale);
+        rbFemale.setText("Female");
 
-        jButton1.setText("Create Customer");
-
-        jButton2.setText("Clear Fields");
-        jButton2.addActionListener(new java.awt.event.ActionListener() {
+        btCreateCustomer.setText("Create Customer");
+        btCreateCustomer.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton2ActionPerformed(evt);
+                btCreateCustomerActionPerformed(evt);
             }
         });
 
-        jButton3.setText("Cancel");
-        jButton3.addActionListener(new java.awt.event.ActionListener() {
+        tbClearFields.setText("Clear Fields");
+        tbClearFields.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton3ActionPerformed(evt);
+                tbClearFieldsActionPerformed(evt);
+            }
+        });
+
+        tbCancel.setText("Cancel");
+        tbCancel.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                tbCancelActionPerformed(evt);
             }
         });
 
         jLabel9.setText("Customer Type");
 
-        buttonGroup2.add(jRadioButton3);
-        jRadioButton3.setText("Driver");
-        jRadioButton3.addActionListener(new java.awt.event.ActionListener() {
+        buttonGroup2.add(rbDriver);
+        rbDriver.setText("Driver");
+        rbDriver.setName("rbDriver"); // NOI18N
+        rbDriver.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jRadioButton3ActionPerformed(evt);
+                rbDriverActionPerformed(evt);
             }
         });
 
-        buttonGroup2.add(jRadioButton4);
-        jRadioButton4.setText("Passenger");
-        jRadioButton4.addActionListener(new java.awt.event.ActionListener() {
+        buttonGroup2.add(rbPassenger);
+        rbPassenger.setText("Passenger");
+        rbPassenger.setName("rbPassenger"); // NOI18N
+        rbPassenger.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jRadioButton4ActionPerformed(evt);
+                rbPassengerActionPerformed(evt);
             }
         });
 
@@ -150,24 +158,24 @@ public class CreateCustomerGUI extends javax.swing.JFrame {
 
         jLabel13.setText("SmokingPreference");
 
-        jTextField7.setEnabled(false);
+        tbCarNum.setEnabled(false);
 
-        jTextField8.setEnabled(false);
+        tbInsurance.setEnabled(false);
 
-        jTextField9.setEnabled(false);
+        tbDlLicenseNo.setEnabled(false);
 
-        buttonGroup3.add(jRadioButton5);
-        jRadioButton5.setText("YES");
-        jRadioButton5.setEnabled(false);
-        jRadioButton5.addActionListener(new java.awt.event.ActionListener() {
+        buttonGroup3.add(rbSomokingPrefYes);
+        rbSomokingPrefYes.setText("YES");
+        rbSomokingPrefYes.setEnabled(false);
+        rbSomokingPrefYes.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jRadioButton5ActionPerformed(evt);
+                rbSomokingPrefYesActionPerformed(evt);
             }
         });
 
-        buttonGroup3.add(jRadioButton6);
-        jRadioButton6.setText("NO");
-        jRadioButton6.setEnabled(false);
+        buttonGroup3.add(rbSmokingPrefNo);
+        rbSmokingPrefNo.setText("NO");
+        rbSmokingPrefNo.setEnabled(false);
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -177,40 +185,40 @@ public class CreateCustomerGUI extends javax.swing.JFrame {
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                         .addGap(0, 0, Short.MAX_VALUE)
-                        .addComponent(jButton3))
+                        .addComponent(tbCancel))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(jPanel1Layout.createSequentialGroup()
                                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addGroup(jPanel1Layout.createSequentialGroup()
                                         .addGap(58, 58, 58)
-                                        .addComponent(jButton1))
+                                        .addComponent(btCreateCustomer))
                                     .addGroup(jPanel1Layout.createSequentialGroup()
                                         .addContainerGap()
                                         .addComponent(jLabel13)))
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jRadioButton6)
-                                    .addComponent(jButton2)))
+                                    .addComponent(rbSmokingPrefNo)
+                                    .addComponent(tbClearFields)))
                             .addGroup(jPanel1Layout.createSequentialGroup()
                                 .addContainerGap()
                                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                                     .addGroup(jPanel1Layout.createSequentialGroup()
                                         .addComponent(jLabel7)
                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                        .addComponent(jTextField9, javax.swing.GroupLayout.PREFERRED_SIZE, 225, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                        .addComponent(tbDlLicenseNo, javax.swing.GroupLayout.PREFERRED_SIZE, 225, javax.swing.GroupLayout.PREFERRED_SIZE))
                                     .addGroup(jPanel1Layout.createSequentialGroup()
                                         .addGap(111, 111, 111)
-                                        .addComponent(jTextField7, javax.swing.GroupLayout.PREFERRED_SIZE, 225, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                        .addComponent(tbCarNum, javax.swing.GroupLayout.PREFERRED_SIZE, 225, javax.swing.GroupLayout.PREFERRED_SIZE))
                                     .addGroup(jPanel1Layout.createSequentialGroup()
                                         .addComponent(jLabel11, javax.swing.GroupLayout.PREFERRED_SIZE, 93, javax.swing.GroupLayout.PREFERRED_SIZE)
                                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                             .addGroup(jPanel1Layout.createSequentialGroup()
                                                 .addGap(18, 18, 18)
-                                                .addComponent(jRadioButton5))
+                                                .addComponent(rbSomokingPrefYes))
                                             .addGroup(jPanel1Layout.createSequentialGroup()
                                                 .addGap(18, 18, 18)
-                                                .addComponent(jTextField8, javax.swing.GroupLayout.PREFERRED_SIZE, 225, javax.swing.GroupLayout.PREFERRED_SIZE)))))))
+                                                .addComponent(tbInsurance, javax.swing.GroupLayout.PREFERRED_SIZE, 225, javax.swing.GroupLayout.PREFERRED_SIZE)))))))
                         .addGap(0, 0, Short.MAX_VALUE)))
                 .addContainerGap())
             .addGroup(jPanel1Layout.createSequentialGroup()
@@ -221,31 +229,31 @@ public class CreateCustomerGUI extends javax.swing.JFrame {
                             .addGroup(jPanel1Layout.createSequentialGroup()
                                 .addComponent(jLabel10, javax.swing.GroupLayout.PREFERRED_SIZE, 84, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(18, 18, 18)
-                                .addComponent(jTextField4))
+                                .addComponent(tbPhNum))
                             .addGroup(jPanel1Layout.createSequentialGroup()
                                 .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 84, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(18, 18, 18)
-                                .addComponent(jTextField2))
+                                .addComponent(tbLName))
                             .addGroup(jPanel1Layout.createSequentialGroup()
                                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addGroup(jPanel1Layout.createSequentialGroup()
                                         .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 84, javax.swing.GroupLayout.PREFERRED_SIZE)
                                         .addGap(18, 18, 18)
-                                        .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 225, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                        .addComponent(tbFName, javax.swing.GroupLayout.PREFERRED_SIZE, 225, javax.swing.GroupLayout.PREFERRED_SIZE))
                                     .addGroup(jPanel1Layout.createSequentialGroup()
                                         .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 84, javax.swing.GroupLayout.PREFERRED_SIZE)
                                         .addGap(18, 18, 18)
-                                        .addComponent(jTextField3, javax.swing.GroupLayout.PREFERRED_SIZE, 225, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                        .addComponent(tbEmail, javax.swing.GroupLayout.PREFERRED_SIZE, 225, javax.swing.GroupLayout.PREFERRED_SIZE))
                                     .addGroup(jPanel1Layout.createSequentialGroup()
                                         .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 84, javax.swing.GroupLayout.PREFERRED_SIZE)
                                         .addGap(18, 18, 18)
-                                        .addComponent(jXDatePicker1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                        .addComponent(dpDOB, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                                     .addGroup(jPanel1Layout.createSequentialGroup()
                                         .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 84, javax.swing.GroupLayout.PREFERRED_SIZE)
                                         .addGap(18, 18, 18)
-                                        .addComponent(jRadioButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 114, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addComponent(rbMale, javax.swing.GroupLayout.PREFERRED_SIZE, 114, javax.swing.GroupLayout.PREFERRED_SIZE)
                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                        .addComponent(jRadioButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 109, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                        .addComponent(rbFemale, javax.swing.GroupLayout.PREFERRED_SIZE, 109, javax.swing.GroupLayout.PREFERRED_SIZE)))
                                 .addGap(0, 35, Short.MAX_VALUE))
                             .addGroup(jPanel1Layout.createSequentialGroup()
                                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -257,9 +265,9 @@ public class CreateCustomerGUI extends javax.swing.JFrame {
                                         .addComponent(jScrollPane1))
                                     .addGroup(jPanel1Layout.createSequentialGroup()
                                         .addGap(27, 27, 27)
-                                        .addComponent(jRadioButton3)
+                                        .addComponent(rbDriver)
                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                        .addComponent(jRadioButton4)
+                                        .addComponent(rbPassenger)
                                         .addGap(0, 0, Short.MAX_VALUE)))))
                         .addGap(172, 172, 172))
                     .addGroup(jPanel1Layout.createSequentialGroup()
@@ -271,27 +279,27 @@ public class CreateCustomerGUI extends javax.swing.JFrame {
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(tbFName, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(tbLName, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jRadioButton1)
-                    .addComponent(jRadioButton2))
+                    .addComponent(rbMale)
+                    .addComponent(rbFemale))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jXDatePicker1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(dpDOB, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jTextField3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(tbEmail, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jTextField4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(tbPhNum, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel10, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -299,34 +307,34 @@ public class CreateCustomerGUI extends javax.swing.JFrame {
                     .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jRadioButton4)
-                    .addComponent(jRadioButton3)
+                    .addComponent(rbPassenger)
+                    .addComponent(rbDriver)
                     .addComponent(jLabel9))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jTextField9, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(tbDlLicenseNo, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel12, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jTextField7, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(tbCarNum, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel11, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jTextField8, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(tbInsurance, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addComponent(jLabel13, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addGap(18, 18, 18)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jButton3)
-                            .addComponent(jButton1)
-                            .addComponent(jButton2)))
+                            .addComponent(tbCancel)
+                            .addComponent(btCreateCustomer)
+                            .addComponent(tbClearFields)))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jRadioButton5)
-                            .addComponent(jRadioButton6))
+                            .addComponent(rbSomokingPrefYes)
+                            .addComponent(rbSmokingPrefNo))
                         .addGap(0, 0, Short.MAX_VALUE))))
         );
 
@@ -356,55 +364,71 @@ public class CreateCustomerGUI extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jRadioButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jRadioButton3ActionPerformed
+    private void rbDriverActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rbDriverActionPerformed
         // TODO add your handling code here:
-        if(jRadioButton3.isSelected()==true){
-            jRadioButton5.setEnabled(false);
-            jRadioButton6.setEnabled(false);
-            jTextField7.setEnabled(true);
-            jTextField8.setEnabled(true);
-            jTextField9.setEnabled(true);
+        if (rbDriver.isSelected() == true) {
+            rbSomokingPrefYes.setEnabled(false);
+            rbSmokingPrefNo.setEnabled(false);
+            tbCarNum.setEnabled(true);
+            tbInsurance.setEnabled(true);
+            tbDlLicenseNo.setEnabled(true);
         }
-    }//GEN-LAST:event_jRadioButton3ActionPerformed
+    }//GEN-LAST:event_rbDriverActionPerformed
 
-    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
+    private void tbCancelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tbCancelActionPerformed
         // TODO add your handling code here:
         homegui.setEnabled(true);
         this.dispose();
-    }//GEN-LAST:event_jButton3ActionPerformed
- 
-    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+    }//GEN-LAST:event_tbCancelActionPerformed
+
+    private void tbClearFieldsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tbClearFieldsActionPerformed
         // TODO add your handling code here:
-        jTextField1.setText("");
-        jTextField2.setText("");
-        jTextField3.setText("");
-        jTextField4.setText("");
-        jTextArea1.setText("");
+        tbFName.setText("");
+        tbLName.setText("");
+        tbEmail.setText("");
+        tbPhNum.setText("");
+        taAddress.setText("");
         buttonGroup1.clearSelection();
-         buttonGroup2.clearSelection();
-     jXDatePicker1.setDate(null);
-    }//GEN-LAST:event_jButton2ActionPerformed
+        buttonGroup2.clearSelection();
+        dpDOB.setDate(null);
+    }//GEN-LAST:event_tbClearFieldsActionPerformed
 
-    private void jRadioButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jRadioButton5ActionPerformed
+    private void rbSomokingPrefYesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rbSomokingPrefYesActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jRadioButton5ActionPerformed
+    }//GEN-LAST:event_rbSomokingPrefYesActionPerformed
 
-    private void jRadioButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jRadioButton4ActionPerformed
+    private void rbPassengerActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rbPassengerActionPerformed
         // TODO add your handling code here:
-        if(jRadioButton4.isSelected()==true){
-            jRadioButton5.setEnabled(true);
-            jRadioButton6.setEnabled(true);
-            jTextField7.setEnabled(false);
-            jTextField8.setEnabled(false);
-            jTextField9.setEnabled(false);
+        if (rbPassenger.isSelected() == true) {
+            rbSomokingPrefYes.setEnabled(true);
+            rbSmokingPrefNo.setEnabled(true);
+            tbCarNum.setEnabled(false);
+            tbInsurance.setEnabled(false);
+            tbDlLicenseNo.setEnabled(false);
         }
-    }//GEN-LAST:event_jRadioButton4ActionPerformed
+    }//GEN-LAST:event_rbPassengerActionPerformed
 
     private void formWindowClosing(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowClosing
         // TODO add your handling code here:
         homegui.setEnabled(true);
         this.dispose();
     }//GEN-LAST:event_formWindowClosing
+
+    private void btCreateCustomerActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btCreateCustomerActionPerformed
+        Customer customer = null;
+        if (this.rbDriver.isSelected()) {
+            customer = new Driver(tbDlLicenseNo.getText(), tbCarNum.getText(), tbInsurance.getText(), tbFName.getText(), tbLName.getText(), dpDOB.getDate(), (rbMale.isSelected() ? Customer.Gender.Male : Customer.Gender.Female), tbEmail.getText(), tbPhNum.getText(), taAddress.getText());
+        } else if (this.rbPassenger.isSelected()) {
+            customer = new Passenger(rbSomokingPrefYes.isSelected(), tbFName.getText(), tbLName.getText(), dpDOB.getDate(), (rbMale.isSelected() ? Customer.Gender.Male : Customer.Gender.Female), tbEmail.getText(), tbPhNum.getText(), taAddress.getText());
+        }
+        if (customer != null) {
+            cps.addCustomer(customer);
+            homegui.setEnabled(true);
+            this.dispose();
+        } else {
+            JOptionPane.showMessageDialog(null, "Invalid Details!", "ERROR", JOptionPane.ERROR_MESSAGE);
+        }
+    }//GEN-LAST:event_btCreateCustomerActionPerformed
 
     /**
      * @param args the command line arguments
@@ -442,12 +466,11 @@ public class CreateCustomerGUI extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btCreateCustomer;
     private javax.swing.ButtonGroup buttonGroup1;
     private javax.swing.ButtonGroup buttonGroup2;
     private javax.swing.ButtonGroup buttonGroup3;
-    private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
-    private javax.swing.JButton jButton3;
+    private org.jdesktop.swingx.JXDatePicker dpDOB;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
@@ -462,23 +485,24 @@ public class CreateCustomerGUI extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel1;
-    private javax.swing.JRadioButton jRadioButton1;
-    private javax.swing.JRadioButton jRadioButton2;
-    private javax.swing.JRadioButton jRadioButton3;
-    private javax.swing.JRadioButton jRadioButton4;
-    private javax.swing.JRadioButton jRadioButton5;
-    private javax.swing.JRadioButton jRadioButton6;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTextArea jTextArea1;
-    private javax.swing.JTextField jTextField1;
-    private javax.swing.JTextField jTextField2;
-    private javax.swing.JTextField jTextField3;
-    private javax.swing.JTextField jTextField4;
-    private javax.swing.JTextField jTextField7;
-    private javax.swing.JTextField jTextField8;
-    private javax.swing.JTextField jTextField9;
-    private org.jdesktop.swingx.JXDatePicker jXDatePicker1;
+    private javax.swing.JRadioButton rbDriver;
+    private javax.swing.JRadioButton rbFemale;
+    private javax.swing.JRadioButton rbMale;
+    private javax.swing.JRadioButton rbPassenger;
+    private javax.swing.JRadioButton rbSmokingPrefNo;
+    private javax.swing.JRadioButton rbSomokingPrefYes;
+    private javax.swing.JTextArea taAddress;
+    private javax.swing.JButton tbCancel;
+    private javax.swing.JTextField tbCarNum;
+    private javax.swing.JButton tbClearFields;
+    private javax.swing.JTextField tbDlLicenseNo;
+    private javax.swing.JTextField tbEmail;
+    private javax.swing.JTextField tbFName;
+    private javax.swing.JTextField tbInsurance;
+    private javax.swing.JTextField tbLName;
+    private javax.swing.JTextField tbPhNum;
     // End of variables declaration//GEN-END:variables
-private CarPoolingSystem cs;
-HomeGUI homegui;
+    private CarPoolingSystem cps;
+    HomeGUI homegui;
 }
