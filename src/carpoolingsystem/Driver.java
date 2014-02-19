@@ -49,8 +49,8 @@ public class Driver extends Customer {
         this.insurance = null;
     }
 
-    public Driver(String dlNumber, String carNumber, String insurance, String fName, String lName, Date dob, Gender sex, String email, String mobile, String address) {
-        super(fName, lName, dob, sex, email, mobile, address);
+    public Driver(long customerId, String dlNumber, String carNumber, String insurance, String fName, String lName, Date dob, Gender sex, String email, String mobile, String address) {
+        super(customerId, fName, lName, dob, sex, email, mobile, address);
         this.dlNumber = dlNumber;
         this.carNumber = carNumber;
         this.insurance = insurance;

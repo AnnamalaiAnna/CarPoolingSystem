@@ -7,7 +7,10 @@ package carpoolingsystem;
 
 import java.util.LinkedList;
 import javax.swing.DefaultListModel;
+import javax.swing.JList;
 import javax.swing.JOptionPane;
+import javax.swing.event.ListSelectionEvent;
+import javax.swing.event.ListSelectionListener;
 
 /**
  *
@@ -24,12 +27,30 @@ public class SearchCustomerGUI extends javax.swing.JFrame {
         initComponents();
     }
 
-    public SearchCustomerGUI(CarPoolingSystem cps, HomeGUI homegui) {
+    public SearchCustomerGUI(final CarPoolingSystem cps, HomeGUI homegui) {
         this();
         this.cps = cps;
         this.homegui = homegui;
         homegui.setEnabled(false);
 
+        lstSearchResult.addListSelectionListener(new ListSelectionListener() {
+
+            @Override
+            public void valueChanged(ListSelectionEvent event) {
+                if (!event.getValueIsAdjusting()) {
+                    JList source = (JList) event.getSource();
+                    launchViewCustomerGUI(source);
+                }
+            }
+        });
+    }
+
+    public void launchViewCustomerGUI(JList source) {
+        int index = source.getSelectedIndex();
+        if (index >= 0) {
+            ViewCustomerGUI vc = new ViewCustomerGUI(cps, this, returnList.get(index));
+            vc.setVisible(true);
+        }
     }
 
     /**
@@ -59,6 +80,7 @@ public class SearchCustomerGUI extends javax.swing.JFrame {
         lstSearchResult = new javax.swing.JList();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        setResizable(false);
         addWindowListener(new java.awt.event.WindowAdapter() {
             public void windowClosing(java.awt.event.WindowEvent evt) {
                 formWindowClosing(evt);
@@ -185,6 +207,7 @@ public class SearchCustomerGUI extends javax.swing.JFrame {
         );
 
         pack();
+        setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
     private void btCancelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btCancelActionPerformed
@@ -200,16 +223,20 @@ public class SearchCustomerGUI extends javax.swing.JFrame {
         this.dispose();
     }//GEN-LAST:event_formWindowClosing
 
+    public DefaultListModel getListModal() {
+        return (DefaultListModel) (lstSearchResult.getModel());
+    }
+
     private void btSearchActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btSearchActionPerformed
+        DefaultListModel m = (DefaultListModel) (lstSearchResult.getModel());
         String custId = tbCustomerId.getText();
         if (custId.length() == 0) {
             custId = "0";
         }
-        LinkedList<Customer> returnList = cps.searchCustomer(Long.parseLong(custId), tbFName.getText(), tbLName.getText(), tbEmail.getText(), tbPhNum.getText());
+        returnList = cps.searchCustomer(Long.parseLong(custId), tbFName.getText(), tbLName.getText(), tbEmail.getText(), tbPhNum.getText());
         if (returnList.isEmpty()) {
             JOptionPane.showMessageDialog(null, "No Result Found", "INFO", JOptionPane.INFORMATION_MESSAGE);
         } else {
-            DefaultListModel m = (DefaultListModel)(lstSearchResult.getModel());
             for (Customer customer : returnList) {
                 m.addElement(customer.getCustomerId() + "\t" + customer.getfName() + "\t" + customer.getlName());
             }
@@ -275,4 +302,5 @@ public class SearchCustomerGUI extends javax.swing.JFrame {
     private javax.swing.JTextField tbPhNum;
     // End of variables declaration//GEN-END:variables
     private CarPoolingSystem cps;
+    LinkedList<Customer> returnList;
 }

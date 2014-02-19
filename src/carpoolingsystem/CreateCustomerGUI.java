@@ -71,10 +71,11 @@ public class CreateCustomerGUI extends javax.swing.JFrame {
         tbCarNum = new javax.swing.JTextField();
         tbInsurance = new javax.swing.JTextField();
         tbDlLicenseNo = new javax.swing.JTextField();
-        rbSomokingPrefYes = new javax.swing.JRadioButton();
+        rbSmokingPrefYes = new javax.swing.JRadioButton();
         rbSmokingPrefNo = new javax.swing.JRadioButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        setResizable(false);
         addWindowListener(new java.awt.event.WindowAdapter() {
             public void windowClosing(java.awt.event.WindowEvent evt) {
                 formWindowClosing(evt);
@@ -164,12 +165,12 @@ public class CreateCustomerGUI extends javax.swing.JFrame {
 
         tbDlLicenseNo.setEnabled(false);
 
-        buttonGroup3.add(rbSomokingPrefYes);
-        rbSomokingPrefYes.setText("YES");
-        rbSomokingPrefYes.setEnabled(false);
-        rbSomokingPrefYes.addActionListener(new java.awt.event.ActionListener() {
+        buttonGroup3.add(rbSmokingPrefYes);
+        rbSmokingPrefYes.setText("YES");
+        rbSmokingPrefYes.setEnabled(false);
+        rbSmokingPrefYes.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                rbSomokingPrefYesActionPerformed(evt);
+                rbSmokingPrefYesActionPerformed(evt);
             }
         });
 
@@ -215,7 +216,7 @@ public class CreateCustomerGUI extends javax.swing.JFrame {
                                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                             .addGroup(jPanel1Layout.createSequentialGroup()
                                                 .addGap(18, 18, 18)
-                                                .addComponent(rbSomokingPrefYes))
+                                                .addComponent(rbSmokingPrefYes))
                                             .addGroup(jPanel1Layout.createSequentialGroup()
                                                 .addGap(18, 18, 18)
                                                 .addComponent(tbInsurance, javax.swing.GroupLayout.PREFERRED_SIZE, 225, javax.swing.GroupLayout.PREFERRED_SIZE)))))))
@@ -333,7 +334,7 @@ public class CreateCustomerGUI extends javax.swing.JFrame {
                             .addComponent(tbClearFields)))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(rbSomokingPrefYes)
+                            .addComponent(rbSmokingPrefYes)
                             .addComponent(rbSmokingPrefNo))
                         .addGap(0, 0, Short.MAX_VALUE))))
         );
@@ -362,12 +363,13 @@ public class CreateCustomerGUI extends javax.swing.JFrame {
         );
 
         pack();
+        setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
     private void rbDriverActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rbDriverActionPerformed
         // TODO add your handling code here:
         if (rbDriver.isSelected() == true) {
-            rbSomokingPrefYes.setEnabled(false);
+            rbSmokingPrefYes.setEnabled(false);
             rbSmokingPrefNo.setEnabled(false);
             tbCarNum.setEnabled(true);
             tbInsurance.setEnabled(true);
@@ -393,14 +395,14 @@ public class CreateCustomerGUI extends javax.swing.JFrame {
         dpDOB.setDate(null);
     }//GEN-LAST:event_tbClearFieldsActionPerformed
 
-    private void rbSomokingPrefYesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rbSomokingPrefYesActionPerformed
+    private void rbSmokingPrefYesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rbSmokingPrefYesActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_rbSomokingPrefYesActionPerformed
+    }//GEN-LAST:event_rbSmokingPrefYesActionPerformed
 
     private void rbPassengerActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rbPassengerActionPerformed
         // TODO add your handling code here:
         if (rbPassenger.isSelected() == true) {
-            rbSomokingPrefYes.setEnabled(true);
+            rbSmokingPrefYes.setEnabled(true);
             rbSmokingPrefNo.setEnabled(true);
             tbCarNum.setEnabled(false);
             tbInsurance.setEnabled(false);
@@ -417,9 +419,9 @@ public class CreateCustomerGUI extends javax.swing.JFrame {
     private void btCreateCustomerActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btCreateCustomerActionPerformed
         Customer customer = null;
         if (this.rbDriver.isSelected()) {
-            customer = new Driver(tbDlLicenseNo.getText(), tbCarNum.getText(), tbInsurance.getText(), tbFName.getText(), tbLName.getText(), dpDOB.getDate(), (rbMale.isSelected() ? Customer.Gender.Male : Customer.Gender.Female), tbEmail.getText(), tbPhNum.getText(), taAddress.getText());
+            customer = new Driver(cps.generateCustomerId(), tbDlLicenseNo.getText(), tbCarNum.getText(), tbInsurance.getText(), tbFName.getText(), tbLName.getText(), dpDOB.getDate(), (rbMale.isSelected() ? Customer.Gender.Male : Customer.Gender.Female), tbEmail.getText(), tbPhNum.getText(), taAddress.getText());
         } else if (this.rbPassenger.isSelected()) {
-            customer = new Passenger(rbSomokingPrefYes.isSelected(), tbFName.getText(), tbLName.getText(), dpDOB.getDate(), (rbMale.isSelected() ? Customer.Gender.Male : Customer.Gender.Female), tbEmail.getText(), tbPhNum.getText(), taAddress.getText());
+            customer = new Passenger(cps.generateCustomerId(), rbSmokingPrefYes.isSelected(), tbFName.getText(), tbLName.getText(), dpDOB.getDate(), (rbMale.isSelected() ? Customer.Gender.Male : Customer.Gender.Female), tbEmail.getText(), tbPhNum.getText(), taAddress.getText());
         }
         if (customer != null) {
             cps.addCustomer(customer);
@@ -491,7 +493,7 @@ public class CreateCustomerGUI extends javax.swing.JFrame {
     private javax.swing.JRadioButton rbMale;
     private javax.swing.JRadioButton rbPassenger;
     private javax.swing.JRadioButton rbSmokingPrefNo;
-    private javax.swing.JRadioButton rbSomokingPrefYes;
+    private javax.swing.JRadioButton rbSmokingPrefYes;
     private javax.swing.JTextArea taAddress;
     private javax.swing.JButton tbCancel;
     private javax.swing.JTextField tbCarNum;

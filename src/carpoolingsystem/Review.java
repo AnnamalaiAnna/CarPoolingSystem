@@ -3,7 +3,6 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-
 package carpoolingsystem;
 
 /**
@@ -11,7 +10,8 @@ package carpoolingsystem;
  * @author Radhika
  */
 public class Review {
-String title;
-String summary;
-float rating;
+
+    String title;
+    String summary;
+    float rating;
 }

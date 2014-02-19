@@ -3,7 +3,6 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-
 package carpoolingsystem;
 
 /**
@@ -18,13 +17,13 @@ public class SearchScheduleGUI extends javax.swing.JFrame {
     public SearchScheduleGUI() {
         initComponents();
     }
-     public SearchScheduleGUI(CarPoolingSystem cs,HomeGUI homegui)
-    {
+
+    public SearchScheduleGUI(CarPoolingSystem cs, HomeGUI homegui) {
         this();
-        this.cs=cs;
-        this.homegui= homegui;
+        this.cs = cs;
+        this.homegui = homegui;
         homegui.setEnabled(false);
-        
+
     }
 
     /**
@@ -63,6 +62,7 @@ public class SearchScheduleGUI extends javax.swing.JFrame {
         jButton5 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        setResizable(false);
         addWindowListener(new java.awt.event.WindowAdapter() {
             public void windowClosing(java.awt.event.WindowEvent evt) {
                 formWindowClosing(evt);
@@ -230,6 +230,7 @@ public class SearchScheduleGUI extends javax.swing.JFrame {
         );
 
         pack();
+        setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
@@ -307,5 +308,5 @@ public class SearchScheduleGUI extends javax.swing.JFrame {
     private org.jdesktop.swingx.JXDatePicker jXDatePicker2;
     // End of variables declaration//GEN-END:variables
 private CarPoolingSystem cs;
-HomeGUI homegui;
+    HomeGUI homegui;
 }

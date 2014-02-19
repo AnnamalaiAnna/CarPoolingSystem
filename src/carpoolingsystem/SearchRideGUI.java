@@ -3,7 +3,6 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-
 package carpoolingsystem;
 
 /**
@@ -18,14 +17,15 @@ public class SearchRideGUI extends javax.swing.JFrame {
     public SearchRideGUI() {
         initComponents();
     }
-public SearchRideGUI(CarPoolingSystem cs,HomeGUI homegui)
-    {
+
+    public SearchRideGUI(CarPoolingSystem cs, HomeGUI homegui) {
         this();
-        this.cs=cs;
-        this.homegui= homegui;
+        this.cs = cs;
+        this.homegui = homegui;
         homegui.setEnabled(false);
-        
+
     }
+
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -63,6 +63,7 @@ public SearchRideGUI(CarPoolingSystem cs,HomeGUI homegui)
         jButton6 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        setResizable(false);
         addWindowListener(new java.awt.event.WindowAdapter() {
             public void windowClosing(java.awt.event.WindowEvent evt) {
                 formWindowClosing(evt);
@@ -236,6 +237,7 @@ public SearchRideGUI(CarPoolingSystem cs,HomeGUI homegui)
         );
 
         pack();
+        setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
@@ -314,6 +316,6 @@ public SearchRideGUI(CarPoolingSystem cs,HomeGUI homegui)
     private org.jdesktop.swingx.JXDatePicker jXDatePicker2;
     // End of variables declaration//GEN-END:variables
 
-private CarPoolingSystem cs;
-HomeGUI homegui;
+    private CarPoolingSystem cs;
+    HomeGUI homegui;
 }

@@ -31,8 +31,6 @@ public class Schedule {
     public void setStatus(boolean status) {
         this.status = status;
     }
-    
-    
 
     public Schedule(Date gstartDate, Date gendDate, Passenger gpass, Ride gride) {
         startDate = gstartDate;
