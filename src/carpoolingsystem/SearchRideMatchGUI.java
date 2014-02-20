@@ -5,6 +5,8 @@
  */
 package carpoolingsystem;
 
+import java.util.LinkedList;
+
 /**
  *
  * @author Annamalai
@@ -18,9 +20,9 @@ public class SearchRideMatchGUI extends javax.swing.JFrame {
         initComponents();
     }
 
-    public SearchRideMatchGUI(CarPoolingSystem cs, HomeGUI homegui) {
+    public SearchRideMatchGUI(CarPoolingSystem cps, HomeGUI homegui) {
         this();
-        this.cs = cs;
+        this.cps = cps;
         this.homegui = homegui;
         homegui.setEnabled(false);
 
@@ -66,6 +68,12 @@ public class SearchRideMatchGUI extends javax.swing.JFrame {
 
         jLabel6.setText("Destination");
 
+        jTextField4.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jTextField4ActionPerformed(evt);
+            }
+        });
+
         jLabel9.setText("Schedule Start Date");
 
         jLabel10.setText("Schedule End Date");
@@ -78,6 +86,11 @@ public class SearchRideMatchGUI extends javax.swing.JFrame {
         });
 
         jButton2.setText("Search");
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton2ActionPerformed(evt);
+            }
+        });
 
         jScrollPane1.setViewportView(jList1);
 
@@ -179,6 +192,16 @@ public class SearchRideMatchGUI extends javax.swing.JFrame {
         homegui.setEnabled(true);
         this.dispose();
     }//GEN-LAST:event_formWindowClosing
+//search ride Match
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+        // TODO add your handling code here:
+        LinkedList<Ride> availableRides = new LinkedList<Ride>();
+        availableRides = cs1.getAvailableRide(jXDatePicker2.getDate(), jXDatePicker1.getDate(), jTextField4.getText(), jTextField4.getText());
+    }//GEN-LAST:event_jButton2ActionPerformed
+
+    private void jTextField4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField4ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jTextField4ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -231,6 +254,7 @@ public class SearchRideMatchGUI extends javax.swing.JFrame {
     private org.jdesktop.swingx.JXDatePicker jXDatePicker1;
     private org.jdesktop.swingx.JXDatePicker jXDatePicker2;
     // End of variables declaration//GEN-END:variables
-private CarPoolingSystem cs;
+private CarPoolingSystem cps;
+    CarPoolingSystem cs1 = new CarPoolingSystem();
     HomeGUI homegui;
 }

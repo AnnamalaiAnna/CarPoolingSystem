@@ -5,13 +5,14 @@
  */
 package carpoolingsystem;
 
+import java.io.Serializable;
 import java.util.Date;
 
 /**
  *
  * @author Radhika
  */
-public class Schedule {
+public class Schedule implements Serializable{
 
     private float cost;
     private Date startDate;

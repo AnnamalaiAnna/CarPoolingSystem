@@ -18,9 +18,9 @@ public class SearchScheduleGUI extends javax.swing.JFrame {
         initComponents();
     }
 
-    public SearchScheduleGUI(CarPoolingSystem cs, HomeGUI homegui) {
+    public SearchScheduleGUI(CarPoolingSystem cps, HomeGUI homegui) {
         this();
-        this.cs = cs;
+        this.cps = cps;
         this.homegui = homegui;
         homegui.setEnabled(false);
 
@@ -307,6 +307,6 @@ public class SearchScheduleGUI extends javax.swing.JFrame {
     private org.jdesktop.swingx.JXDatePicker jXDatePicker1;
     private org.jdesktop.swingx.JXDatePicker jXDatePicker2;
     // End of variables declaration//GEN-END:variables
-private CarPoolingSystem cs;
+private CarPoolingSystem cps;
     HomeGUI homegui;
 }
