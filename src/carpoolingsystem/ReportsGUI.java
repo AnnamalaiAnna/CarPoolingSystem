@@ -3,7 +3,6 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-
 package carpoolingsystem;
 
 /**
@@ -18,14 +17,15 @@ public class ReportsGUI extends javax.swing.JFrame {
     public ReportsGUI() {
         initComponents();
     }
- public ReportsGUI(CarPoolingSystem cs,HomeGUI homegui)
-    {
+
+    public ReportsGUI(CarPoolingSystem cs, HomeGUI homegui) {
         this();
-        this.cs=cs;
-        this.homegui= homegui;
+        this.cs = cs;
+        this.homegui = homegui;
         homegui.setEnabled(false);
-        
+
     }
+
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -64,6 +64,7 @@ public class ReportsGUI extends javax.swing.JFrame {
         jCheckBox5 = new javax.swing.JCheckBox();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        setResizable(false);
         addWindowListener(new java.awt.event.WindowAdapter() {
             public void windowClosing(java.awt.event.WindowEvent evt) {
                 formWindowClosing(evt);
@@ -243,11 +244,12 @@ public class ReportsGUI extends javax.swing.JFrame {
         );
 
         pack();
+        setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
-       homegui.setEnabled(true);
+        homegui.setEnabled(true);
         this.dispose();
     }//GEN-LAST:event_jButton1ActionPerformed
 
@@ -322,6 +324,6 @@ public class ReportsGUI extends javax.swing.JFrame {
     private org.jdesktop.swingx.JXDatePicker jXDatePicker4;
     // End of variables declaration//GEN-END:variables
 private CarPoolingSystem cs;
-HomeGUI homegui;
+    HomeGUI homegui;
 
 }

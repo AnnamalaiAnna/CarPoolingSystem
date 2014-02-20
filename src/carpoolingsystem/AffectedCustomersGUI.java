@@ -3,7 +3,6 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-
 package carpoolingsystem;
 
 /**
@@ -52,6 +51,7 @@ public class AffectedCustomersGUI extends javax.swing.JFrame {
         jButton1 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setResizable(false);
 
         jLabel1.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(255, 0, 51));
@@ -70,25 +70,10 @@ public class AffectedCustomersGUI extends javax.swing.JFrame {
 
         jTextField1.setText("Due to change in Ride, all the following schedules are cancelled.");
 
-        jList1.setModel(new javax.swing.AbstractListModel() {
-            String[] strings = { "Name 1", "Name 2", "Name 3", "Name 4", "Name 5" };
-            public int getSize() { return strings.length; }
-            public Object getElementAt(int i) { return strings[i]; }
-        });
         jScrollPane1.setViewportView(jList1);
 
-        jList2.setModel(new javax.swing.AbstractListModel() {
-            String[] strings = { "Email 1", "Email 2", "Email 3", "Email 4", "Email 5" };
-            public int getSize() { return strings.length; }
-            public Object getElementAt(int i) { return strings[i]; }
-        });
         jScrollPane2.setViewportView(jList2);
 
-        jList3.setModel(new javax.swing.AbstractListModel() {
-            String[] strings = { "Ph Number 1", "Ph Number 2", "Ph Number 3", "Ph Number 4", "Ph Number 5" };
-            public int getSize() { return strings.length; }
-            public Object getElementAt(int i) { return strings[i]; }
-        });
         jScrollPane3.setViewportView(jList3);
 
         jLabel8.setText("Email");
@@ -204,6 +189,7 @@ public class AffectedCustomersGUI extends javax.swing.JFrame {
         );
 
         pack();
+        setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
     /**

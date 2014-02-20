@@ -16,7 +16,7 @@ public class Passenger extends Customer {
     private boolean smokingPref;
     private LinkedList<Schedule> scheduleHistory = new LinkedList<Schedule>();
 
-    public boolean isSmokingPref() {
+    public boolean getSmokingPref() {
         return smokingPref;
     }
 
@@ -29,8 +29,8 @@ public class Passenger extends Customer {
         this.smokingPref = false;
     }
 
-    public Passenger(boolean smokingPref, String fName, String lName, Date dob, Gender sex, String email, String mobile, String address) {
-        super(fName, lName, dob, sex, email, mobile, address);
+    public Passenger(long customerId, boolean smokingPref, String fName, String lName, Date dob, Gender sex, String email, String mobile, String address) {
+        super(customerId, fName, lName, dob, sex, email, mobile, address);
         this.smokingPref = smokingPref;
     }
 

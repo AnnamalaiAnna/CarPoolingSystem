@@ -3,7 +3,6 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-
 package carpoolingsystem;
 
 /**
@@ -18,14 +17,15 @@ public class SearchRideMatchGUI extends javax.swing.JFrame {
     public SearchRideMatchGUI() {
         initComponents();
     }
-public SearchRideMatchGUI(CarPoolingSystem cs,HomeGUI homegui)
-    {
+
+    public SearchRideMatchGUI(CarPoolingSystem cs, HomeGUI homegui) {
         this();
-        this.cs=cs;
-        this.homegui= homegui;
+        this.cs = cs;
+        this.homegui = homegui;
         homegui.setEnabled(false);
-        
+
     }
+
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -51,6 +51,7 @@ public SearchRideMatchGUI(CarPoolingSystem cs,HomeGUI homegui)
         jList1 = new javax.swing.JList();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        setResizable(false);
         addWindowListener(new java.awt.event.WindowAdapter() {
             public void windowClosing(java.awt.event.WindowEvent evt) {
                 formWindowClosing(evt);
@@ -78,11 +79,6 @@ public SearchRideMatchGUI(CarPoolingSystem cs,HomeGUI homegui)
 
         jButton2.setText("Search");
 
-        jList1.setModel(new javax.swing.AbstractListModel() {
-            String[] strings = { "Ride 1", "Ride 2", "Ride 3", "Ride 4", "Ride 5" };
-            public int getSize() { return strings.length; }
-            public Object getElementAt(int i) { return strings[i]; }
-        });
         jScrollPane1.setViewportView(jList1);
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
@@ -169,6 +165,7 @@ public SearchRideMatchGUI(CarPoolingSystem cs,HomeGUI homegui)
         );
 
         pack();
+        setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
@@ -235,5 +232,5 @@ public SearchRideMatchGUI(CarPoolingSystem cs,HomeGUI homegui)
     private org.jdesktop.swingx.JXDatePicker jXDatePicker2;
     // End of variables declaration//GEN-END:variables
 private CarPoolingSystem cs;
-HomeGUI homegui;
+    HomeGUI homegui;
 }

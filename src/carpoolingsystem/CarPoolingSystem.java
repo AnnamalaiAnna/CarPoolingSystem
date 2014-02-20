@@ -28,6 +28,7 @@ import javax.swing.JOptionPane;
 public class CarPoolingSystem implements Serializable {
 
     public double costpermile;
+    long custIdGenerator;
     public LinkedList<Customer> Customerlist = new LinkedList<Customer>();
 
     enum Type {
@@ -37,7 +38,7 @@ public class CarPoolingSystem implements Serializable {
     }
 
     public static void main(String[] args) throws IOException {
-        
+
         CarPoolingSystem cps = (CarPoolingSystem) deSerialize("CarPoolingSystem.dat");
         if (cps == null) {
             cps = new CarPoolingSystem(5.2);
@@ -68,11 +69,12 @@ public class CarPoolingSystem implements Serializable {
 
     public static void serialize(Object obj, String filePath) {
         try {
-            FileOutputStream fos = new FileOutputStream(filePath);
-            ObjectOutputStream oos = new ObjectOutputStream(fos);
-            oos.writeObject(obj);
-            fos.close();
-        } catch (Exception ex) {
+            try (FileOutputStream fos = new FileOutputStream(filePath)) {
+                ObjectOutputStream oos = new ObjectOutputStream(fos);
+                oos.writeObject(obj);
+                oos.close();
+            }
+        } catch (IOException ex) {
             JOptionPane.showMessageDialog(null, ex.getMessage(), "EXCEPTION", JOptionPane.ERROR_MESSAGE);
         }
     }
@@ -88,12 +90,18 @@ public class CarPoolingSystem implements Serializable {
 //        }
     }
 
+    public long generateCustomerId() {
+        return custIdGenerator += 1;
+    }
+
     public CarPoolingSystem() {
         costpermile = 0;
+        custIdGenerator = 0;
     }
 
     public CarPoolingSystem(double costpermile) {
         this.costpermile = costpermile;
+        custIdGenerator = 0;
     }
 
     public void addCustomer(Customer customer) {
@@ -105,7 +113,13 @@ public class CarPoolingSystem implements Serializable {
 
     public LinkedList<Customer> searchCustomer(long customerId, String fName, String lName, String email, String mobile) {
         LinkedList<Customer> returnList = new LinkedList<Customer>();
+        /*if (customerId == 0) {
+         return Customerlist;
+         }*/
         for (Customer customer : Customerlist) {
+            if (!customer.getCustomerStatus()) {
+                continue;
+            }
             if ((customerId > 0) && (customer.getCustomerId() == customerId)) {
                 returnList.add(customer);
                 break;

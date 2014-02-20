@@ -5,15 +5,15 @@
  */
 package carpoolingsystem;
 
+import java.io.Serializable;
 import java.util.*;
 
 /**
  *
  * @author Rajesh
  */
-abstract public class Customer {
+abstract public class Customer implements Serializable {
 
-    private static long custIdGenerator = 0;
     private final long customerId;
     private String fName;
     private String lName;
@@ -84,7 +84,7 @@ abstract public class Customer {
         this.address = address;
     }
 
-    public boolean isCustStatus() {
+    public boolean getCustomerStatus() {
         return status;
     }
 
@@ -99,7 +99,7 @@ abstract public class Customer {
 
     //private LinkedList<Review> reviewList = new LinkedList<Review>();
     public Customer() {
-        this.customerId = generateCustomerId();
+        this.customerId = 0;
         this.fName = null;
         this.lName = null;
         this.dob = null;
@@ -110,8 +110,8 @@ abstract public class Customer {
         this.status = true;
     }
 
-    public Customer(String fName, String lName, Date dob, Gender sex, String email, String mobile, String address) {
-        this.customerId = generateCustomerId();
+    public Customer(long customerID, String fName, String lName, Date dob, Gender sex, String email, String mobile, String address) {
+        this.customerId = customerID;
         this.fName = fName;
         this.lName = lName;
         this.dob = dob;
@@ -138,7 +138,4 @@ abstract public class Customer {
 
     }
 
-    private long generateCustomerId() {
-        return custIdGenerator += 1;
-    }
 }
