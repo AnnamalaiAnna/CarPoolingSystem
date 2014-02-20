@@ -18,9 +18,9 @@ public class ReportsGUI extends javax.swing.JFrame {
         initComponents();
     }
 
-    public ReportsGUI(CarPoolingSystem cs, HomeGUI homegui) {
+    public ReportsGUI(CarPoolingSystem cps, HomeGUI homegui) {
         this();
-        this.cs = cs;
+        this.cps = cps;
         this.homegui = homegui;
         homegui.setEnabled(false);
 
@@ -323,7 +323,7 @@ public class ReportsGUI extends javax.swing.JFrame {
     private org.jdesktop.swingx.JXDatePicker jXDatePicker3;
     private org.jdesktop.swingx.JXDatePicker jXDatePicker4;
     // End of variables declaration//GEN-END:variables
-private CarPoolingSystem cs;
+private CarPoolingSystem cps;
     HomeGUI homegui;
 
 }

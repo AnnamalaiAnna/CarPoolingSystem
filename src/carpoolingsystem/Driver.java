@@ -18,6 +18,10 @@ public class Driver extends Customer {
     private String insurance;
     private LinkedList<Ride> rideHistory = new LinkedList<Ride>();
 
+    public LinkedList<Ride> getRideHistory() {
+        return rideHistory;
+    }
+
     public String getDlNumber() {
         return dlNumber;
     }
@@ -57,12 +61,16 @@ public class Driver extends Customer {
     }
 
     public Ride getActiveRide() {
-        Ride a = null;
-        return a;
+        if (getRideHistory().isEmpty()) {
+            return null;
+        } else if (getRideHistory().getLast().isStatus()) {
+            return getRideHistory().getLast();
+        }
+        return null;
     }
 
-    public void addRide() {
-
+    public void addRide(Ride r) {
+        this.rideHistory.add(r);
     }
 
     @Override
@@ -87,4 +95,5 @@ public class Driver extends Customer {
         }
         this.disableCustomer();
     }
+
 }

@@ -29,7 +29,7 @@ public class CarPoolingSystem implements Serializable {
 
     public double costpermile;
     long custIdGenerator;
-    public LinkedList<Customer> Customerlist = new LinkedList<Customer>();
+    public LinkedList<Customer> customerlist = new LinkedList<Customer>();
 
     enum Type {
 
@@ -43,7 +43,7 @@ public class CarPoolingSystem implements Serializable {
         if (cps == null) {
             cps = new CarPoolingSystem(5.2);
         }
-        //checkAndCreateFileSystem();
+        checkAndCreateFileSystem();
         HomeGUI home = new HomeGUI(cps);
         home.setVisible(true);
     }
@@ -88,6 +88,10 @@ public class CarPoolingSystem implements Serializable {
 //            File f = new File("CarPoolingSystem.dat");
 //            f.createNewFile();
 //        }
+        File receiptDir = new File("Receipts");
+        if (!receiptDir.exists()) {
+            receiptDir.mkdir();
+        }
     }
 
     public long generateCustomerId() {
@@ -105,18 +109,19 @@ public class CarPoolingSystem implements Serializable {
     }
 
     public void addCustomer(Customer customer) {
-        this.Customerlist.add(customer);
+        this.customerlist.add(customer);
     }
 
     public void addRide(Ride r) {
     }
 
     public LinkedList<Customer> searchCustomer(long customerId, String fName, String lName, String email, String mobile) {
+
         LinkedList<Customer> returnList = new LinkedList<Customer>();
         /*if (customerId == 0) {
          return Customerlist;
          }*/
-        for (Customer customer : Customerlist) {
+        for (Customer customer : customerlist) {
             if (!customer.getCustomerStatus()) {
                 continue;
             }
@@ -142,15 +147,43 @@ public class CarPoolingSystem implements Serializable {
             }
         }
         return returnList;
+
     }
 
     public void calcCost(Date sDate, Date eDate, String origin, String dest) {
     }
 
-    public void getAvailableRide(Date sDate, Date eDate, String origin, String dest) {
+    public LinkedList<Ride> getAvailableRide(Date sDate, Date eDate, String origin, String dest) {
+        LinkedList<Ride> returnList = new LinkedList<Ride>();
+        Driver d;
+
+        for (Customer customer : customerlist) {
+            if (customer.getCustomerStatus() == true && customer instanceof Driver) {
+                d = (Driver) customer;
+                if (d.getRideHistory().getLast().isStatus() == true) {
+                    if ((d.getRideHistory().getLast().getOrigin()).equals(origin) && (d.getRideHistory().getLast().getDestination()).equals(dest)) {
+                        if (d.getRideHistory().getLast().verifyAvailability(sDate, eDate, origin, dest)) {
+                            returnList.add(d.getRideHistory().getLast());
+                        }
+                    }
+                }
+            }
+        }
+        return returnList;
     }
 
-    public void validateCust(long customerId, Type type) {
+    public boolean validateCust(long customerId, Type type) {
+        LinkedList<Customer> returnList = new LinkedList<Customer>();
+        returnList = searchCustomer(customerId, null, null, null, null);
+        Customer c = returnList.get(0);
+        if (c != null) {
+            if (type == Type.Driver && (c instanceof Driver)) {
+                return true;
+            } else if (type == Type.Passenger && (c instanceof Passenger)) {
+                return true;
+            }
+        }
+        return false;
     }
 
     public void searchRide(Customer c) {
