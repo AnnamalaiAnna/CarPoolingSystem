@@ -303,9 +303,6 @@
         <Component class="javax.swing.JTextField" name="tbEmail">
         </Component>
         <Component class="org.jdesktop.swingx.JXDatePicker" name="dpDOB">
-          <Properties>
-            <Property name="editable" type="boolean" value="false"/>
-          </Properties>
         </Component>
         <Component class="javax.swing.JRadioButton" name="rbFemale">
           <Properties>

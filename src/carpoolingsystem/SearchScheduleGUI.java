@@ -109,11 +109,7 @@ public class SearchScheduleGUI extends javax.swing.JFrame {
 
         jLabel9.setText("Schedule Start Date");
 
-        dpStartDate.setEditable(false);
-
         jLabel10.setText("Schedule End Date");
-
-        dpEndDate.setEditable(false);
 
         jLabel8.setText("Cost");
 

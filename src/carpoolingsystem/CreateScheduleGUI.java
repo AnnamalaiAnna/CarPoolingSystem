@@ -99,6 +99,7 @@ public class CreateScheduleGUI extends javax.swing.JFrame {
 
         dpEndDate.setEnabled(false);
 
+        dpStartDate.setEditable(false);
         dpStartDate.setEnabled(false);
 
         tbDriverId.setEnabled(false);

@@ -79,10 +79,6 @@ public class SearchRideMatchGUI extends javax.swing.JFrame {
 
         jLabel10.setText("Schedule End Date");
 
-        dpStartDate.setEditable(false);
-
-        dpEndDate.setEditable(false);
-
         btCancel.setText("Cancel");
         btCancel.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {

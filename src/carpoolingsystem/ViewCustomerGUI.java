@@ -141,8 +141,6 @@ public class ViewCustomerGUI extends javax.swing.JFrame {
         tbAddress.setRows(5);
         jScrollPane1.setViewportView(tbAddress);
 
-        dpDOB.setEditable(false);
-
         rbFemale.setText("Female");
 
         rbMale.setText("Male");
