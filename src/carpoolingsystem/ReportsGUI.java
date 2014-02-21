@@ -98,6 +98,10 @@ public class ReportsGUI extends javax.swing.JFrame {
 
         jLabel10.setText("End Date");
 
+        jXDatePicker1.setEditable(false);
+
+        jXDatePicker2.setEditable(false);
+
         jLabel7.setText("Destination");
 
         jLabel8.setText("Origin");
@@ -105,6 +109,10 @@ public class ReportsGUI extends javax.swing.JFrame {
         jLabel11.setText("End Date");
 
         jLabel12.setText("Start Date");
+
+        jXDatePicker3.setEditable(false);
+
+        jXDatePicker4.setEditable(false);
 
         jCheckBox4.setText("List all Rides");
 

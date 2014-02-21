@@ -387,6 +387,9 @@
           </Events>
         </Component>
         <Component class="org.jdesktop.swingx.JXDatePicker" name="dpDOB">
+          <Properties>
+            <Property name="editable" type="boolean" value="false"/>
+          </Properties>
         </Component>
         <Component class="javax.swing.JLabel" name="jLabel9">
           <Properties>

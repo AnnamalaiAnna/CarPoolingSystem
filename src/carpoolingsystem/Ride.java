@@ -24,7 +24,7 @@ import org.jdesktop.swingx.JXDatePicker;
  */
 public class Ride implements Serializable, Receipt {
 
-    //   private Driver drv;
+    private Driver driver;
     private LinkedList<Schedule> scheduleList = new LinkedList<Schedule>();
     private String origin;
     private String destination;
@@ -34,16 +34,8 @@ public class Ride implements Serializable, Receipt {
     private boolean smokingAllowed;
     private boolean status;
 
-    /*  Ride(String origin, String destination, int capacity, JXDatePicker dpStartDate, JXDatePicker dpEndDate) {
-     this.origin = origin;
-     this.destination = destination;
-     this.capacity = capacity;
-     this.startDate = dpStartDate.getDate();
-     this.endDate = dpEndDate.getDate();
-     this.status = true;
-     }*/
     Ride() {
-        //throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
     Ride(Ride ride) {
@@ -53,23 +45,22 @@ public class Ride implements Serializable, Receipt {
         this.startDate = ride.startDate;
         this.endDate = ride.endDate;
         this.status = ride.status;
+        this.driver = ride.driver;
     }
 
-    Ride(String origin, String destination, int capacity, Date startDate, Date endDate) {
+    Ride(String origin, String destination, int capacity, Date startDate, Date endDate, Driver driver) {
         this.origin = origin;
         this.destination = destination;
         this.capacity = capacity;
         this.startDate = startDate;
         this.endDate = endDate;
         this.status = true;
+        this.driver = driver;
     }
-    /*public void Ride(){
-     this.origin=null;
-     this.destination = null;
-     this.capacity=0;
-     this.startDate=null;
-     this.endDate=null; 
-     }*/
+
+    public Driver getDriver() {
+        return driver;
+    }
 
     public String getOrigin() {
         return origin;
@@ -115,25 +106,25 @@ public class Ride implements Serializable, Receipt {
         this.status = status;
     }
 
-    public boolean verifyAvailability(Date sDate, Date eDate, String origin, String Dest) {
-        int cap = capacity;
-        for (Schedule schedule : scheduleList) {
-            if (schedule.getStatus() == true) {
-                if (schedule.getStartDate().compareTo(eDate) <= 0 && schedule.getEndDate().compareTo(sDate) >= 0) {
-                    cap--;
+    public boolean verifyAvailability(Date sDate, Date eDate) {
+        if (startDate.compareTo(sDate) <= 0 && endDate.compareTo(eDate) >= 0) {
+            int cap = capacity;
+            for (Schedule schedule : scheduleList) {
+                if (schedule.getStatus()) {
+                    if (schedule.getStartDate().compareTo(eDate) <= 0 && schedule.getEndDate().compareTo(sDate) >= 0) {
+                        cap--;
+                    }
                 }
             }
-        }
-        if (cap > 0) {
-            return true;
+            if (cap > 0) {
+                return true;
+            }
         }
         return false;
     }
 
-    public void addSched(Schedule sched) {
-    }
-
-    public void getDriver() {
+    public void addSchedule(Schedule schedule) {
+        scheduleList.add(schedule);
     }
 
     public LinkedList<Schedule> getAffectedSchedules(Date sDate, Date eDate) {

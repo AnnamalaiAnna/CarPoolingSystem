@@ -131,6 +131,8 @@ public class CreateCustomerGUI extends javax.swing.JFrame {
             }
         });
 
+        dpDOB.setEditable(false);
+
         jLabel9.setText("Customer Type");
 
         buttonGroup2.add(rbDriver);

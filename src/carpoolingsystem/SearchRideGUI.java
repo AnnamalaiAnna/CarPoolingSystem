@@ -344,7 +344,7 @@ public class SearchRideGUI extends javax.swing.JFrame {
             if (dpStartDate.getDate().compareTo(dpEndDate.getDate()) > 0) {
                 JOptionPane.showMessageDialog(null, "Invalid Dates");
             } else {
-                ride = new Ride(tbOrigin.getText(), tbDestination.getText(), Integer.parseInt(tbCapacity.getText()), dpStartDate.getDate(), dpEndDate.getDate());
+                ride = new Ride(tbOrigin.getText(), tbDestination.getText(), Integer.parseInt(tbCapacity.getText()), dpStartDate.getDate(), dpEndDate.getDate(), driver);
                 driver.addRide(ride);
                 goBack();
             }
