@@ -12,7 +12,7 @@ import java.util.Date;
  *
  * @author Radhika
  */
-public class Schedule implements Serializable{
+public class Schedule implements Serializable {
 
     private float cost;
     private Date startDate;
@@ -22,26 +22,57 @@ public class Schedule implements Serializable{
     private Ride ride;
 
     public Schedule() {
+        this.cost = 0;
+        this.startDate = null;
+        this.endDate = null;
+        this.passenger = null;
+        this.ride = null;
+        this.status = true;
+    }
 
+    public Schedule(Date startDate, Date endDate, Passenger passenger, Ride ride) {
+        this.cost = 0;
+        this.startDate = startDate;
+        this.endDate = endDate;
+        this.passenger = passenger;
+        this.ride = ride;
+        this.status = true;
+    }
+
+    public Schedule(Schedule s) {
+        this.cost = s.cost;
+        this.startDate = s.startDate;
+        this.endDate = s.endDate;
+        this.status = s.status;
+        this.passenger = s.passenger;
+        this.ride = s.ride;
     }
 
     public boolean getStatus() {
         return status;
     }
 
+    public void setStartDate(Date startDate) {
+        this.startDate = startDate;
+    }
+
+    public void setEndDate(Date endDate) {
+        this.endDate = endDate;
+    }
+
+    public Passenger getPassenger() {
+        return passenger;
+    }
+
+    public Ride getRide() {
+        return ride;
+    }
+
     public void setStatus(boolean status) {
         this.status = status;
     }
 
-    public Schedule(Date gstartDate, Date gendDate, Passenger gpass, Ride gride) {
-        startDate = gstartDate;
-        endDate = gendDate;
-        passenger = gpass;
-        ride = gride;
-    }
-
     public float getCost() {
-        //cost= cost/mile*no of days* no of miles per day
         return cost;
     }
 
@@ -57,10 +88,14 @@ public class Schedule implements Serializable{
         status = false;
     }
 
-    public void modifySchedule(Date givenStartDate, Date givenEndDate) {
-        //check if different
-        //deleteSchedule()
-        //Schedule(parameters)  
+    public Schedule modifySchedule(Date startDate, Date endDate) {
+        Schedule newSchedule = new Schedule(this);
+        newSchedule.setStartDate(startDate);
+        newSchedule.setEndDate(endDate);
+        ride.getScheduleList().add(newSchedule);
+        passenger.getScheduleHistory().add(newSchedule);
+        deactivateSchedule();
+        return newSchedule;
     }
 
     public void printReciept() {

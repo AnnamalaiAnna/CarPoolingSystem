@@ -20,6 +20,10 @@ public class Passenger extends Customer {
         return smokingPref;
     }
 
+    public LinkedList<Schedule> getScheduleHistory() {
+        return scheduleHistory;
+    }
+
     public void setSmokingPref(boolean smokingPref) {
         this.smokingPref = smokingPref;
     }
@@ -43,8 +47,8 @@ public class Passenger extends Customer {
         return null;
     }
 
-    public void addSched() {
-
+    public void addSchedule(Schedule schedule) {
+        scheduleHistory.add(schedule);
     }
 
     @Override

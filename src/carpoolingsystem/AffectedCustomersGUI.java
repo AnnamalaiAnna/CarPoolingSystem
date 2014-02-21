@@ -62,9 +62,17 @@ public class AffectedCustomersGUI extends javax.swing.JFrame {
 
         jLabel6.setText("Destination");
 
+        jTextField4.setEnabled(false);
+
+        jTextField5.setEnabled(false);
+
         jLabel9.setText("Start Date");
 
         jLabel10.setText("End Date");
+
+        jXDatePicker2.setEnabled(false);
+
+        jXDatePicker1.setEnabled(false);
 
         jLabel7.setText("Message to Notify");
 

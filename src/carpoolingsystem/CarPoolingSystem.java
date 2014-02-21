@@ -154,16 +154,15 @@ public class CarPoolingSystem implements Serializable {
     }
 
     public LinkedList<Ride> getAvailableRide(Date sDate, Date eDate, String origin, String dest) {
-        LinkedList<Ride> returnList = new LinkedList<Ride>();
-        Driver d;
+        LinkedList<Ride> returnList = null;
 
         for (Customer customer : customerlist) {
             if (customer.getCustomerStatus() == true && customer instanceof Driver) {
-                d = (Driver) customer;
-                if (d.getRideHistory().getLast().isStatus() == true) {
-                    if ((d.getRideHistory().getLast().getOrigin()).equals(origin) && (d.getRideHistory().getLast().getDestination()).equals(dest)) {
-                        if (d.getRideHistory().getLast().verifyAvailability(sDate, eDate, origin, dest)) {
-                            returnList.add(d.getRideHistory().getLast());
+                Driver driver = (Driver) customer;
+                if (driver.getRideHistory().getLast().isStatus()) {
+                    if ((driver.getRideHistory().getLast().getOrigin()).equals(origin) && (driver.getRideHistory().getLast().getDestination()).equals(dest)) {
+                        if (driver.getRideHistory().getLast().verifyAvailability(sDate, eDate)) {
+                            returnList.add(driver.getRideHistory().getLast());
                         }
                     }
                 }
