@@ -37,6 +37,9 @@ public class ReportsGUI extends javax.swing.JFrame {
 
         buttonGroup1 = new javax.swing.ButtonGroup();
         buttonGroup2 = new javax.swing.ButtonGroup();
+        buttonGroup3 = new javax.swing.ButtonGroup();
+        buttonGroup4 = new javax.swing.ButtonGroup();
+        buttonGroup5 = new javax.swing.ButtonGroup();
         jLabel1 = new javax.swing.JLabel();
         jPanel1 = new javax.swing.JPanel();
         jButton1 = new javax.swing.JButton();
@@ -62,6 +65,15 @@ public class ReportsGUI extends javax.swing.JFrame {
         jXDatePicker4 = new org.jdesktop.swingx.JXDatePicker();
         jCheckBox4 = new javax.swing.JCheckBox();
         jCheckBox5 = new javax.swing.JCheckBox();
+        rbByCustomerID = new javax.swing.JRadioButton();
+        rbByCustomerFName = new javax.swing.JRadioButton();
+        rbByCustomerLName = new javax.swing.JRadioButton();
+        rbByRideID = new javax.swing.JRadioButton();
+        rbByRideFName = new javax.swing.JRadioButton();
+        rbByRideLName = new javax.swing.JRadioButton();
+        rbByScheduleID = new javax.swing.JRadioButton();
+        rbByScheduleFName = new javax.swing.JRadioButton();
+        rbByScheduleLName = new javax.swing.JRadioButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setResizable(false);
@@ -110,6 +122,33 @@ public class ReportsGUI extends javax.swing.JFrame {
 
         jCheckBox5.setText("List Schedules by range");
 
+        buttonGroup1.add(rbByCustomerID);
+        rbByCustomerID.setText("By ID");
+
+        buttonGroup1.add(rbByCustomerFName);
+        rbByCustomerFName.setText("By First Name");
+
+        buttonGroup1.add(rbByCustomerLName);
+        rbByCustomerLName.setText("By Last Name");
+
+        buttonGroup2.add(rbByRideID);
+        rbByRideID.setText("By ID");
+
+        buttonGroup2.add(rbByRideFName);
+        rbByRideFName.setText("By First Name");
+
+        buttonGroup2.add(rbByRideLName);
+        rbByRideLName.setText("By Last Name");
+
+        buttonGroup3.add(rbByScheduleID);
+        rbByScheduleID.setText("By ID");
+
+        buttonGroup3.add(rbByScheduleFName);
+        rbByScheduleFName.setText("By First Name");
+
+        buttonGroup3.add(rbByScheduleLName);
+        rbByScheduleLName.setText("By Last Name");
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -124,9 +163,6 @@ public class ReportsGUI extends javax.swing.JFrame {
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGap(15, 15, 15)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jCheckBox3)
-                            .addComponent(jCheckBox1)
-                            .addComponent(jCheckBox4)
                             .addComponent(jCheckBox2)
                             .addComponent(jCheckBox5)
                             .addGroup(jPanel1Layout.createSequentialGroup()
@@ -163,7 +199,32 @@ public class ReportsGUI extends javax.swing.JFrame {
                                         .addGap(23, 23, 23)
                                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                             .addComponent(jXDatePicker3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                            .addComponent(jXDatePicker4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))))
+                                            .addComponent(jXDatePicker4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))))
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jCheckBox1)
+                                    .addComponent(jCheckBox4)
+                                    .addComponent(jCheckBox3))
+                                .addGap(31, 31, 31)
+                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addGroup(jPanel1Layout.createSequentialGroup()
+                                        .addComponent(rbByScheduleID)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                        .addComponent(rbByScheduleFName)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                        .addComponent(rbByScheduleLName))
+                                    .addGroup(jPanel1Layout.createSequentialGroup()
+                                        .addComponent(rbByRideID)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                        .addComponent(rbByRideFName)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                        .addComponent(rbByRideLName))
+                                    .addGroup(jPanel1Layout.createSequentialGroup()
+                                        .addComponent(rbByCustomerID)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                        .addComponent(rbByCustomerFName)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                        .addComponent(rbByCustomerLName)))))
                         .addGap(0, 62, Short.MAX_VALUE)))
                 .addContainerGap())
         );
@@ -171,11 +232,23 @@ public class ReportsGUI extends javax.swing.JFrame {
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                 .addGap(24, 24, 24)
-                .addComponent(jCheckBox1)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jCheckBox1)
+                    .addComponent(rbByCustomerID)
+                    .addComponent(rbByCustomerFName)
+                    .addComponent(rbByCustomerLName))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jCheckBox4)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jCheckBox4)
+                    .addComponent(rbByRideID)
+                    .addComponent(rbByRideFName)
+                    .addComponent(rbByRideLName))
                 .addGap(3, 3, 3)
-                .addComponent(jCheckBox3)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jCheckBox3)
+                    .addComponent(rbByScheduleID)
+                    .addComponent(rbByScheduleFName)
+                    .addComponent(rbByScheduleLName))
                 .addGap(33, 33, 33)
                 .addComponent(jCheckBox2)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
@@ -297,6 +370,9 @@ public class ReportsGUI extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.ButtonGroup buttonGroup1;
     private javax.swing.ButtonGroup buttonGroup2;
+    private javax.swing.ButtonGroup buttonGroup3;
+    private javax.swing.ButtonGroup buttonGroup4;
+    private javax.swing.ButtonGroup buttonGroup5;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
     private javax.swing.JCheckBox jCheckBox1;
@@ -322,6 +398,15 @@ public class ReportsGUI extends javax.swing.JFrame {
     private org.jdesktop.swingx.JXDatePicker jXDatePicker2;
     private org.jdesktop.swingx.JXDatePicker jXDatePicker3;
     private org.jdesktop.swingx.JXDatePicker jXDatePicker4;
+    private javax.swing.JRadioButton rbByCustomerFName;
+    private javax.swing.JRadioButton rbByCustomerID;
+    private javax.swing.JRadioButton rbByCustomerLName;
+    private javax.swing.JRadioButton rbByRideFName;
+    private javax.swing.JRadioButton rbByRideID;
+    private javax.swing.JRadioButton rbByRideLName;
+    private javax.swing.JRadioButton rbByScheduleFName;
+    private javax.swing.JRadioButton rbByScheduleID;
+    private javax.swing.JRadioButton rbByScheduleLName;
     // End of variables declaration//GEN-END:variables
 private CarPoolingSystem cps;
     HomeGUI homegui;
