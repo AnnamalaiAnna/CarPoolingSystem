@@ -27,10 +27,6 @@ public class SearchRideMatchGUI extends javax.swing.JFrame {
     }
 
     public SearchRideMatchGUI(CarPoolingSystem cps, HomeGUI homegui) {
-       /* this();
-        this.cps = cps;
-        this.homegui = homegui;
-        homegui.setEnabled(false);*/
         this();
         this.cps = cps;
         this.homegui = homegui;
@@ -46,17 +42,15 @@ public class SearchRideMatchGUI extends javax.swing.JFrame {
                 }
             }
         });
-
     }
-    
-        public void launchCreateScheduleGUI(JList source) {
+
+    public void launchCreateScheduleGUI(JList source) {
         int index = source.getSelectedIndex();
         if (index >= 0) {
-            CreateScheduleGUI cs = new CreateScheduleGUI(cps, this, availableRides.get(index),dpStartDate.getDate(), dpEndDate.getDate());
+            CreateScheduleGUI cs = new CreateScheduleGUI(cps, this, availableRides.get(index), dpStartDate.getDate(), dpEndDate.getDate());
             cs.setVisible(true);
         }
     }
-
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -220,6 +214,7 @@ public class SearchRideMatchGUI extends javax.swing.JFrame {
         homegui.setEnabled(true);
         this.dispose();
     }
+
     public DefaultListModel getListModal() {
         return (DefaultListModel) (lstSearchResult.getModel());
     }
@@ -229,25 +224,20 @@ public class SearchRideMatchGUI extends javax.swing.JFrame {
     }//GEN-LAST:event_formWindowClosing
 
     private void btSearchActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btSearchActionPerformed
-        
-       Date Today = new Date();
-       DefaultListModel m = (DefaultListModel) (lstSearchResult.getModel());
-       if(dpStartDate.getDate().compareTo(Today)>=0 && dpStartDate.getDate().compareTo(dpEndDate.getDate())<=0){ 
-       availableRides = cps.getAvailableRide(dpStartDate.getDate(), dpEndDate.getDate(), tbOrigin.getText(), tbDestination.getText());
-        if (availableRides.isEmpty()) {
-            System.out.println("empty");
-            JOptionPane.showMessageDialog(null, "No Result Found", "INFO", JOptionPane.INFORMATION_MESSAGE);
-        } else {
-            System.out.println("notempty");
-           System.out.println(availableRides.getFirst().getDriver().getfName());
-            for (Ride ride : availableRides) {
-                m.addElement(ride.getDriver().getCustomerId() + "\t" + ride.getDriver().getfName() + "\t" + ride.getDriver().getlName());
+        Date Today = new Date();
+        DefaultListModel m = (DefaultListModel) (lstSearchResult.getModel());
+        if (dpStartDate.getDate().compareTo(Today) >= 0 && dpStartDate.getDate().compareTo(dpEndDate.getDate()) <= 0) {
+            availableRides = cps.getAvailableRide(dpStartDate.getDate(), dpEndDate.getDate(), tbOrigin.getText(), tbDestination.getText());
+            if (availableRides.isEmpty()) {
+                JOptionPane.showMessageDialog(null, "No Result Found", "INFO", JOptionPane.INFORMATION_MESSAGE);
+            } else {
+                for (Ride ride : availableRides) {
+                    m.addElement(ride.getDriver().getCustomerId() + "\t" + ride.getDriver().getfName() + "\t" + ride.getDriver().getlName());
+                }
             }
+        } else {
+            JOptionPane.showMessageDialog(null, "Please select valid Dates!", "INFO", JOptionPane.INFORMATION_MESSAGE);
         }
-       }
-       else{
-           JOptionPane.showMessageDialog(null, "Please select valid Dates!", "INFO", JOptionPane.INFORMATION_MESSAGE);
-       }
     }//GEN-LAST:event_btSearchActionPerformed
 
     private void tbOriginActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tbOriginActionPerformed
@@ -308,5 +298,5 @@ public class SearchRideMatchGUI extends javax.swing.JFrame {
     private CarPoolingSystem cps = new CarPoolingSystem();
     private HomeGUI homegui;
     private LinkedList<Ride> availableRides;
-    
+
 }
