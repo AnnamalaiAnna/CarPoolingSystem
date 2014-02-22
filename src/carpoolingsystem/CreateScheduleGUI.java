@@ -73,7 +73,6 @@ public class CreateScheduleGUI extends javax.swing.JFrame {
         btCreate = new javax.swing.JButton();
         jLabel8 = new javax.swing.JLabel();
         tbCost = new javax.swing.JTextField();
-        btGetCost = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setResizable(false);
@@ -131,13 +130,6 @@ public class CreateScheduleGUI extends javax.swing.JFrame {
 
         tbCost.setEnabled(false);
 
-        btGetCost.setText("Get Cost");
-        btGetCost.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btGetCostActionPerformed(evt);
-            }
-        });
-
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -180,11 +172,8 @@ public class CreateScheduleGUI extends javax.swing.JFrame {
                                 .addComponent(dpEndDate, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addComponent(tbOrigin, javax.swing.GroupLayout.DEFAULT_SIZE, 194, Short.MAX_VALUE)
                                 .addComponent(tbDestination))
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addComponent(tbCost, javax.swing.GroupLayout.PREFERRED_SIZE, 112, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(28, 28, 28)
-                                .addComponent(btGetCost)))))
-                .addContainerGap(250, Short.MAX_VALUE))
+                            .addComponent(tbCost, javax.swing.GroupLayout.PREFERRED_SIZE, 112, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                .addContainerGap(271, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -221,12 +210,11 @@ public class CreateScheduleGUI extends javax.swing.JFrame {
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel10)
                     .addComponent(dpEndDate, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(34, 34, 34)
+                .addGap(35, 35, 35)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel8)
-                    .addComponent(tbCost, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btGetCost))
-                .addGap(47, 47, 47)
+                    .addComponent(tbCost, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(49, 49, 49)
                 .addComponent(btCreate)
                 .addContainerGap(50, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
@@ -291,10 +279,6 @@ public class CreateScheduleGUI extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_btCreateActionPerformed
 
-    private void btGetCostActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btGetCostActionPerformed
-
-    }//GEN-LAST:event_btGetCostActionPerformed
-
     private void goBack() {
         searchRideMatchGUI.getListModal().removeAllElements();
         this.searchRideMatchGUI.setEnabled(true);
@@ -339,7 +323,6 @@ public class CreateScheduleGUI extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btCancel;
     private javax.swing.JButton btCreate;
-    private javax.swing.JButton btGetCost;
     private org.jdesktop.swingx.JXDatePicker dpEndDate;
     private org.jdesktop.swingx.JXDatePicker dpStartDate;
     private javax.swing.JLabel jLabel1;
