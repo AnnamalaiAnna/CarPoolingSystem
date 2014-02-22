@@ -98,7 +98,7 @@ public class Ride implements Serializable, Receipt {
         this.smokingAllowed = smokingAllowed;
     }
 
-    public boolean isStatus() {
+    public boolean getStatus() {
         return status;
     }
 

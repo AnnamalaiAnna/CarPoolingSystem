@@ -12,7 +12,7 @@ import java.util.*;
  *
  * @author Rajesh
  */
-abstract public class Customer implements Serializable {
+abstract public class Customer implements Serializable, Comparable<Customer> {
 
     private final long customerId;
     private String fName;
@@ -125,6 +125,31 @@ abstract public class Customer implements Serializable {
     public abstract void modifyCustomer(String fName, String lName, Gender sex, Date dob, String email, String mobile, String address, String dlNumber, String carNumber, String insurance, boolean smokingPref);
 
     public abstract void deactivateCustomer();
+
+    @Override
+    public int compareTo(Customer t) {
+        if (this.customerId < t.customerId) {
+            return -1;
+        } else if (this.customerId > t.customerId) {
+            return 1;
+        } else {
+            return 0;
+        }
+    }
+
+    public static Comparator<Customer> FirstNameComparator = new Comparator<Customer>() {
+        @Override
+        public int compare(Customer customer1, Customer customer2) {
+            return customer1.getfName().compareToIgnoreCase(customer2.getfName());
+        }
+    };
+
+    public static Comparator<Customer> LastNameComparator = new Comparator<Customer>() {
+        @Override
+        public int compare(Customer customer1, Customer customer2) {
+            return customer1.getlName().compareToIgnoreCase(customer2.getlName());
+        }
+    };
 
     public void disableCustomer() {
         this.status = false;
