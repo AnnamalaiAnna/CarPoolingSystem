@@ -41,12 +41,6 @@ public class CarPoolingSystem implements Serializable {
     long custIdGenerator;
     public LinkedList<Customer> customerlist = new LinkedList<Customer>();
 
-    enum Type {
-
-        Driver,
-        Passenger
-    }
-
     enum SortType {
 
         ByID, ByFName, ByLName
@@ -128,7 +122,7 @@ public class CarPoolingSystem implements Serializable {
 
     public CarPoolingSystem() {
         custIdGenerator = 0;
-    }    
+    }
 
     public void addCustomer(Customer customer) {
         this.customerlist.add(customer);
@@ -190,19 +184,19 @@ public class CarPoolingSystem implements Serializable {
         return returnList;
     }
 
-    public boolean validateCust(long customerId, Type type) {
-        LinkedList<Customer> returnList = new LinkedList<Customer>();
-        returnList = searchCustomer(customerId, null, null, null, null);
-        Customer c = returnList.get(0);
-        if (c != null) {
-            if (type == Type.Driver && (c instanceof Driver)) {
-                return true;
-            } else if (type == Type.Passenger && (c instanceof Passenger)) {
-                return true;
-            }
-        }
-        return false;
-    }
+//    public boolean validateCust(long customerId, Type type) {
+//        LinkedList<Customer> returnList = new LinkedList<Customer>();
+//        returnList = searchCustomer(customerId, null, null, null, null);
+//        Customer c = returnList.get(0);
+//        if (c != null) {
+//            if (type == Type.Driver && (c instanceof Driver)) {
+//                return true;
+//            } else if (type == Type.Passenger && (c instanceof Passenger)) {
+//                return true;
+//            }
+//        }
+//        return false;
+//    }
 
     private void doSorting(SortType sortType) {
         if (sortType == SortType.ByFName) {
