@@ -98,7 +98,7 @@ public class Ride implements Serializable, Receipt {
         this.smokingAllowed = smokingAllowed;
     }
 
-    public boolean isStatus() {
+    public boolean getStatus() {
         return status;
     }
 
@@ -174,7 +174,7 @@ public class Ride implements Serializable, Receipt {
         sb.append(String.format("Start Date: %-20SEnd Date: %-20S\n", dateFormat.format(getStartDate()), dateFormat.format(getEndDate())));
         Date today = new Date();
         dateFormat = new SimpleDateFormat("yyyy-mm-dd_hh-mm-ss");
-        String fileName = ".\\Receipts\\Receipt_" + dateFormat.format(today) + ".txt";
+        String fileName = ".\\Receipts\\Ride_Receipt_" + dateFormat.format(today) + ".txt";
         PrintWriter writer;
         try {
             writer = new PrintWriter(fileName, "UTF-8");

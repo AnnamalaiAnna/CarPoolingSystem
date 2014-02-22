@@ -63,7 +63,7 @@ public class Driver extends Customer {
     public Ride getActiveRide() {
         if (getRideHistory().isEmpty()) {
             return null;
-        } else if (getRideHistory().getLast().isStatus()) {
+        } else if (getRideHistory().getLast().getStatus()) {
             return getRideHistory().getLast();
         }
         return null;

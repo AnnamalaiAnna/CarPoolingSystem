@@ -107,12 +107,16 @@
                                   <Component id="dpEndDate" alignment="0" min="-2" max="-2" attributes="0"/>
                                   <Component id="tbOrigin" pref="194" max="32767" attributes="0"/>
                                   <Component id="tbDestination" alignment="0" max="32767" attributes="0"/>
-                                  <Component id="tbCost" alignment="0" min="-2" pref="112" max="-2" attributes="0"/>
+                              </Group>
+                              <Group type="102" alignment="0" attributes="0">
+                                  <Component id="tbCost" min="-2" pref="112" max="-2" attributes="0"/>
+                                  <EmptySpace min="-2" pref="28" max="-2" attributes="0"/>
+                                  <Component id="btGetCost" min="-2" max="-2" attributes="0"/>
                               </Group>
                           </Group>
                       </Group>
                   </Group>
-                  <EmptySpace max="32767" attributes="0"/>
+                  <EmptySpace pref="250" max="32767" attributes="0"/>
               </Group>
           </Group>
         </DimensionLayout>
@@ -159,12 +163,13 @@
                       <Component id="jLabel10" alignment="3" min="-2" max="-2" attributes="0"/>
                       <Component id="dpEndDate" alignment="3" min="-2" max="-2" attributes="0"/>
                   </Group>
-                  <EmptySpace min="-2" pref="35" max="-2" attributes="0"/>
+                  <EmptySpace min="-2" pref="34" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="3" attributes="0">
                       <Component id="jLabel8" alignment="3" min="-2" max="-2" attributes="0"/>
                       <Component id="tbCost" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="btGetCost" alignment="3" min="-2" max="-2" attributes="0"/>
                   </Group>
-                  <EmptySpace min="-2" pref="49" max="-2" attributes="0"/>
+                  <EmptySpace min="-2" pref="47" max="-2" attributes="0"/>
                   <Component id="btCreate" min="-2" max="-2" attributes="0"/>
                   <EmptySpace pref="50" max="32767" attributes="0"/>
               </Group>
@@ -265,7 +270,7 @@
         </Component>
         <Component class="javax.swing.JButton" name="btCreate">
           <Properties>
-            <Property name="text" type="java.lang.String" value="Create and Print Schedule"/>
+            <Property name="text" type="java.lang.String" value="Create Schedule"/>
           </Properties>
           <Events>
             <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btCreateActionPerformed"/>
@@ -280,6 +285,14 @@
           <Properties>
             <Property name="enabled" type="boolean" value="false"/>
           </Properties>
+        </Component>
+        <Component class="javax.swing.JButton" name="btGetCost">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="Get Cost"/>
+          </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btGetCostActionPerformed"/>
+          </Events>
         </Component>
       </SubComponents>
     </Container>

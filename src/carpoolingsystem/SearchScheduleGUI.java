@@ -303,7 +303,7 @@ public class SearchScheduleGUI extends javax.swing.JFrame {
                 this.tbDestination.setText(ride.getDestination());
                 this.dpStartDate.setDate(schedule.getStartDate());
                 this.dpEndDate.setDate(schedule.getEndDate());
-                this.tbCost.setText(Float.toString(schedule.getCost()));
+                this.tbCost.setText(Double.toString(schedule.getCost()));
             }
         }
     }//GEN-LAST:event_btSearchActionPerformed
