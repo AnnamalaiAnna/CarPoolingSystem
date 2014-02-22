@@ -37,7 +37,7 @@ import javax.swing.JOptionPane;
  */
 public class CarPoolingSystem implements Serializable {
 
-    public double costpermile;
+    static double costPerDay = 5.2;
     long custIdGenerator;
     public LinkedList<Customer> customerlist = new LinkedList<Customer>();
 
@@ -66,7 +66,7 @@ public class CarPoolingSystem implements Serializable {
 
         CarPoolingSystem cps = (CarPoolingSystem) deSerialize("CarPoolingSystem.dat");
         if (cps == null) {
-            cps = new CarPoolingSystem(5.2);
+            cps = new CarPoolingSystem();
         }
         checkAndCreateFileSystem();
         HomeGUI home = new HomeGUI(cps);
@@ -127,20 +127,11 @@ public class CarPoolingSystem implements Serializable {
     }
 
     public CarPoolingSystem() {
-        costpermile = 0;
         custIdGenerator = 0;
-    }
-
-    public CarPoolingSystem(double costpermile) {
-        this.costpermile = costpermile;
-        custIdGenerator = 0;
-    }
+    }    
 
     public void addCustomer(Customer customer) {
         this.customerlist.add(customer);
-    }
-
-    public void addRide(Ride r) {
     }
 
     public LinkedList<Customer> searchCustomer(long customerId, String fName, String lName, String email, String mobile) {
@@ -178,18 +169,19 @@ public class CarPoolingSystem implements Serializable {
 
     }
 
-    public void calcCost(Date sDate, Date eDate, String origin, String dest) {
-    }
-
     public LinkedList<Ride> getAvailableRide(Date sDate, Date eDate, String origin, String dest) {
         LinkedList<Ride> returnList = new LinkedList<Ride>();
         for (Customer customer : customerlist) {
             if (customer.getCustomerStatus() == true && customer instanceof Driver) {
                 Driver driver = (Driver) customer;
-                if (driver.getRideHistory().getLast().getStatus()) {
-                    if ((driver.getRideHistory().getLast().getOrigin()).equals(origin) && (driver.getRideHistory().getLast().getDestination()).equals(dest)) {
-                        if (driver.getRideHistory().getLast().verifyAvailability(sDate, eDate)) {
-                            returnList.add(driver.getRideHistory().getLast());
+                if (driver.getRideHistory().isEmpty()) {
+                    continue;
+                }
+                Ride ride = driver.getRideHistory().getLast();
+                if (ride.getStatus()) {
+                    if ((ride.getOrigin()).equals(origin) && (ride.getDestination()).equals(dest)) {
+                        if (ride.verifyAvailability(sDate, eDate)) {
+                            returnList.add(ride);
                         }
                     }
                 }
@@ -210,15 +202,6 @@ public class CarPoolingSystem implements Serializable {
             }
         }
         return false;
-    }
-
-    public void searchRide(Customer c) {
-    }
-
-    public void printCustByName(Type t) {
-    }
-
-    public void printRideByOrigin(Status s) {
     }
 
     private void doSorting(SortType sortType) {
