@@ -179,13 +179,18 @@ abstract public class Customer implements Serializable, Comparable<Customer> {
     }
 
     @Override
-    public String toString(){
-    String ret = String.format("%-20s%-40s%-30s",this.getCustomerId(),this.getName(),this.getMobile());    
-    return ret;
+    public String toString() {
+        String ret = String.format("%-20s%-40s%-30s", this.getCustomerId(), this.getName(), this.getMobile());
+        return ret;
     }
-    
-    public void addReview() {
 
+    public float getRating() {
+        float iRating = 0;
+        for (Review review : reviewList) {
+            iRating = iRating + review.getRating();
+        }
+        iRating = iRating / reviewList.size();
+        return iRating;
     }
 
 }
