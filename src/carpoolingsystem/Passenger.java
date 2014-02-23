@@ -64,11 +64,12 @@ public class Passenger extends Customer {
     }
 
     @Override
-    public void deactivateCustomer() {
+    public LinkedList<Customer> deactivateCustomer() {
         Schedule activeSchedule = this.getActiveSched();
         if (activeSchedule != null) {
             activeSchedule.deactivateSchedule();
         }
         this.disableCustomer();
+        return null;
     }
 }

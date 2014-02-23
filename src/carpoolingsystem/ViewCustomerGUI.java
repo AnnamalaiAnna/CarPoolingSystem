@@ -5,7 +5,9 @@
  */
 package carpoolingsystem;
 
+import java.util.LinkedList;
 import javax.swing.DefaultListModel;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -423,12 +425,18 @@ public class ViewCustomerGUI extends javax.swing.JFrame {
     }
 
     private void btDeleteCustomerActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btDeleteCustomerActionPerformed
-        customer.deactivateCustomer();
-        goBack();
+        LinkedList<Customer> affectedCustomers = customer.deactivateCustomer();
+        JOptionPane.showMessageDialog(null, "Customer successfully deleted", "INFORMATION", JOptionPane.INFORMATION_MESSAGE);
+        if ((affectedCustomers != null) && (!affectedCustomers.isEmpty())) {
+            AffectedCustomersGUI afc = new AffectedCustomersGUI(affectedCustomers, searchCustomerGUI);
+            afc.setVisible(true);
+        }
+        this.dispose();
     }//GEN-LAST:event_btDeleteCustomerActionPerformed
 
     private void btModifyCustomerActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btModifyCustomerActionPerformed
         customer.modifyCustomer(tbFName.getText(), tbLName.getText(), (rbMale.isSelected() ? Customer.Gender.Male : Customer.Gender.Female), dpDOB.getDate(), tbEmail.getText(), tbPhNumber.getText(), tbAddress.getText(), tbDlLicenseNo.getText(), tbCarNum.getText(), tbInsurance.getText(), rbSmokingPrefYes.isSelected());
+        JOptionPane.showMessageDialog(null, "Customer successfully Modified", "INFORMATION", JOptionPane.INFORMATION_MESSAGE);
         goBack();
     }//GEN-LAST:event_btModifyCustomerActionPerformed
 

@@ -127,27 +127,30 @@ public class Ride implements Serializable, Receipt {
         scheduleList.add(schedule);
     }
 
-    public LinkedList<Schedule> getAffectedSchedules(Date sDate, Date eDate) {
-        LinkedList<Schedule> returnList = new LinkedList<Schedule>();
+    public LinkedList<Customer> getAffectedSchedules(Date sDate, Date eDate) {
+        LinkedList<Customer> returnList = new LinkedList<Customer>();
         for (Schedule schedule : scheduleList) {
             if (schedule.getStartDate().compareTo(sDate) >= 0 && schedule.getEndDate().compareTo(eDate) <= 0) {
                 continue;
             } else {
-                returnList.add(schedule);
+                returnList.add(schedule.getPassenger());
                 schedule.deactivateSchedule();
             }
         }
         return returnList;
     }
 
-    public void deactivateRide() {
+    public LinkedList<Customer> deactivateRide() {
         LinkedList<Schedule> affectedSchedules = this.getScheduleList();
+        LinkedList<Customer> returnList = new LinkedList<Customer>();
         for (Schedule schedule : affectedSchedules) {
             if (schedule.getStatus()) {
+                returnList.add(schedule.getPassenger());
                 schedule.deactivateSchedule();
             }
         }
         status = false;
+        return returnList;
     }
 
     public Ride modifyNRecreate(Date sDate, Date eDate) {

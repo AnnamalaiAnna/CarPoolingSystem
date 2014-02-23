@@ -9,6 +9,7 @@ import java.io.FileNotFoundException;
 import java.io.PrintWriter;
 import java.io.Serializable;
 import java.io.UnsupportedEncodingException;
+import java.math.BigDecimal;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -83,6 +84,10 @@ public class Schedule implements Serializable, Receipt {
         return cost;
     }
 
+    public String getCostStr() {
+        return String.format("%5.2f", cost);
+    }
+
     public Date getStartDate() {
         return startDate;
     }
@@ -105,16 +110,22 @@ public class Schedule implements Serializable, Receipt {
         return newSchedule;
     }
 
+//    public double round(double unrounded, int precision, int roundingMode) {
+//        BigDecimal bd = new BigDecimal(unrounded);
+//        BigDecimal rounded = bd.setScale(precision, roundingMode);
+//        return rounded.doubleValue();
+//    }
     public double calculateCost(Date startDate, Date endDate) {
+        //return daysBetween(startDate, endDate) * round(CarPoolingSystem.costPerDay, 2, BigDecimal.ROUND_HALF_UP);
         return daysBetween(startDate, endDate) * CarPoolingSystem.costPerDay;
     }
 
     public int daysBetween(Date d1, Date d2) {
         int days = (int) ((d2.getTime() - d1.getTime()) / (1000 * 60 * 60 * 24));
-        if (days > 0) {
-            days = days + 1;
-        }
-        return days;
+//        if (days > 0) {
+//            days = days + 1;
+//        }
+        return days + 1;
     }
 
     @Override
@@ -129,7 +140,7 @@ public class Schedule implements Serializable, Receipt {
         DateFormat dateFormat = new SimpleDateFormat("mm-dd-yyyy");
         sb.append(String.format("Start Date: %-10S End Date: %-10S No of Days %-5d", dateFormat.format(getStartDate()), dateFormat.format(getEndDate()), daysBetween(getStartDate(), getEndDate())));
         sb.append(System.getProperty("line.separator"));
-        sb.append(String.format("Total Cost: %-20d", getCost()));
+        sb.append(String.format("Total Cost: %-5f", getCost()));
 
         Date today = new Date();
         dateFormat = new SimpleDateFormat("yyyy-mm-dd_hh-mm-ss");

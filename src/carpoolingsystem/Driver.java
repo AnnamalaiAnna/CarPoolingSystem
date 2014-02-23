@@ -88,12 +88,14 @@ public class Driver extends Customer {
     }
 
     @Override
-    public void deactivateCustomer() {
+    public LinkedList<Customer> deactivateCustomer() {
+        LinkedList<Customer> returnList = new LinkedList<Customer>();
         Ride activeRide = getActiveRide();
         if (activeRide != null) {
-            activeRide.deactivateRide();
+            returnList = activeRide.deactivateRide();
         }
         this.disableCustomer();
+        return returnList;
     }
 
 }

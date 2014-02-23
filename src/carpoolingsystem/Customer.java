@@ -36,6 +36,10 @@ abstract public class Customer implements Serializable, Comparable<Customer> {
     public String getfName() {
         return fName;
     }
+    
+    public String getName() {
+        return fName + " " + lName;
+    }
 
     public void setfName(String fName) {
         this.fName = fName;
@@ -129,7 +133,7 @@ abstract public class Customer implements Serializable, Comparable<Customer> {
 
     public abstract void modifyCustomer(String fName, String lName, Gender sex, Date dob, String email, String mobile, String address, String dlNumber, String carNumber, String insurance, boolean smokingPref);
 
-    public abstract void deactivateCustomer();
+    public abstract LinkedList<Customer> deactivateCustomer();
 
     @Override
     public int compareTo(Customer t) {
