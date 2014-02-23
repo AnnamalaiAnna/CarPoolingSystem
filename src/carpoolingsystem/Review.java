@@ -11,7 +11,53 @@ package carpoolingsystem;
  */
 public class Review {
 
-    String title;
     String summary;
-    float rating;
+    String comments;
+    int rating;
+    Customer customer;
+
+    public String getComments() {
+        return comments;
+}
+
+    public void setComments(String comments) {
+        this.comments = comments;
+    }
+
+    public String getSummary() {
+        return summary;
+    }
+
+    public void setSummary(String summary) {
+        this.summary = summary;
+    }
+
+    public int getRating() {
+        return rating;
+    }
+
+    public void setRating(int rating) {
+        this.rating = rating;
+    }
+
+    public Customer getCustomer() {
+        return customer;
+    }
+
+    public Review() {
+    }
+
+    public Review(String summary, String comments, int rating, Customer customer) {
+        this.summary = summary;
+        this.comments = comments;
+        this.rating = rating;
+        this.customer = customer;
+    }
+   public void modifyReview(String summary, String comments, int rating)
+   {
+        setSummary(summary);
+        setComments(comments);
+        setRating(rating);
+       
+   }
 }
