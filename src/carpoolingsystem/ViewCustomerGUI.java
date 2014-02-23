@@ -430,8 +430,9 @@ public class ViewCustomerGUI extends javax.swing.JFrame {
         if ((affectedCustomers != null) && (!affectedCustomers.isEmpty())) {
             AffectedCustomersGUI afc = new AffectedCustomersGUI(affectedCustomers, searchCustomerGUI);
             afc.setVisible(true);
+            this.dispose();
         }
-        this.dispose();
+        goBack();
     }//GEN-LAST:event_btDeleteCustomerActionPerformed
 
     private void btModifyCustomerActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btModifyCustomerActionPerformed

@@ -226,6 +226,7 @@ public class SearchRideMatchGUI extends javax.swing.JFrame {
     private void btSearchActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btSearchActionPerformed
         Date Today = new Date();
         DefaultListModel m = (DefaultListModel) (lstSearchResult.getModel());
+        m.clear();
         if (dpStartDate.getDate().compareTo(Today) >= 0 && dpStartDate.getDate().compareTo(dpEndDate.getDate()) <= 0) {
             availableRides = cps.getAvailableRide(dpStartDate.getDate(), dpEndDate.getDate(), tbOrigin.getText(), tbDestination.getText());
             if (availableRides.isEmpty()) {
