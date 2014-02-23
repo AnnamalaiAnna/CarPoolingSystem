@@ -229,6 +229,7 @@ public class SearchCustomerGUI extends javax.swing.JFrame {
 
     private void btSearchActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btSearchActionPerformed
         DefaultListModel m = (DefaultListModel) (lstSearchResult.getModel());
+        m.clear();
         String custId = tbCustomerId.getText();
         if (custId.length() == 0) {
             custId = "0";
