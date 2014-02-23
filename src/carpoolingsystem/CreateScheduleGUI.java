@@ -268,6 +268,10 @@ public class CreateScheduleGUI extends javax.swing.JFrame {
                 JOptionPane.showMessageDialog(null, "Driver cannot have a Schedule");
             } else {
                 Passenger passenger = (Passenger) returnList.getFirst();
+                if (passenger.getActiveSched() != null) {
+                    JOptionPane.showMessageDialog(null, "Passenger already has an active schedule");
+                    return;
+                }
                 Schedule schedule = new Schedule(dpStartDate.getDate(), dpEndDate.getDate(), passenger, ride);
                 tbCost.setText(schedule.getCostStr());
 

@@ -346,6 +346,10 @@ public class SearchRideGUI extends javax.swing.JFrame {
             if (dpStartDate.getDate().compareTo(dpEndDate.getDate()) > 0 || dpStartDate.getDate().compareTo(Today) < 0) {
                 JOptionPane.showMessageDialog(null, "Invalid Dates");
             } else {
+                if (driver.getActiveRide() != null) {
+                    JOptionPane.showMessageDialog(null, "Driver already has an active ride", "INFORMATION", JOptionPane.INFORMATION_MESSAGE);
+                    return;
+                }
                 ride = new Ride(tbOrigin.getText(), tbDestination.getText(), Integer.parseInt(tbCapacity.getText()), dpStartDate.getDate(), dpEndDate.getDate(), driver);
                 driver.addRide(ride);
                 JOptionPane.showMessageDialog(null, "Ride successfully created", "INFORMATION", JOptionPane.INFORMATION_MESSAGE);

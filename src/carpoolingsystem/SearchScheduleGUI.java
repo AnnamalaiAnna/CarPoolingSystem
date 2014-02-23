@@ -325,6 +325,7 @@ public class SearchScheduleGUI extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(null, "Dates Not Available!", "ERROR", JOptionPane.ERROR_MESSAGE);
             btModify.setEnabled(false);
         } else {
+            tbCost.setText(Double.toString(schedule.calculateCost(dpStartDate.getDate(), dpEndDate.getDate())));
             btModify.setEnabled(true);
         }
     }//GEN-LAST:event_btVerifyAvailabilityActionPerformed

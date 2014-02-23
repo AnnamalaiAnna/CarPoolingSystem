@@ -171,9 +171,11 @@ public class Ride implements Serializable, Receipt {
         StringBuilder sb = new StringBuilder();
         sb.append(String.format("Driver Id: %-20d", customer.getCustomerId()));
         sb.append(System.getProperty("line.separator"));
-        sb.append(String.format("First Name: %-20SLast Name: %-20S", customer.getfName(), customer.getlName()));
+        sb.append(String.format("Name: %-20S", customer.getName()));
         sb.append(System.getProperty("line.separator"));
-        sb.append(String.format("Origin: %-20SDestination: %-20S\n", getOrigin(), getDestination()));
+        sb.append(String.format("Origin: %-20S", getOrigin()));
+        sb.append(System.getProperty("line.separator"));
+        sb.append(String.format("Destination: %-20S", getDestination()));
         sb.append(System.getProperty("line.separator"));
         DateFormat dateFormat = new SimpleDateFormat("MM-dd-yyyy");
         sb.append(String.format("Start Date: %-20SEnd Date: %-20S\n", dateFormat.format(getStartDate()), dateFormat.format(getEndDate())));

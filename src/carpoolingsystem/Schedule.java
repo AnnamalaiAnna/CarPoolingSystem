@@ -133,14 +133,20 @@ public class Schedule implements Serializable, Receipt {
     @Override
     public void printReceipt(Customer customer) {
         StringBuilder sb = new StringBuilder();
-        sb.append(String.format("Driver Id: %-20d Driver Name: %-20S %-20S Contact Number: %-10S", ride.getDriver().getCustomerId(), ride.getDriver().getfName(), ride.getDriver().getlName(), ride.getDriver().getMobile()));
+        sb.append(String.format("Name: %-20S",customer.getName()));
         sb.append(System.getProperty("line.separator"));
-        sb.append(String.format("First Name: %-20SLast Name: %-20S", customer.getfName(), customer.getlName()));
+        sb.append(String.format("Driver Details--> Id:%-20d Name: %-20S Number: %-10S", ride.getDriver().getCustomerId(), ride.getDriver().getName(), ride.getDriver().getMobile()));
         sb.append(System.getProperty("line.separator"));
-        sb.append(String.format("Origin: %-20SDestination: %-20S", ride.getOrigin(), ride.getDestination()));
+        sb.append(String.format("Origin: %-20S", ride.getOrigin()));
+        sb.append(System.getProperty("line.separator"));
+        sb.append(String.format("Destination: %-20S", ride.getDestination()));
         sb.append(System.getProperty("line.separator"));
         DateFormat dateFormat = new SimpleDateFormat("MM-dd-yyyy");
-        sb.append(String.format("Start Date: %-10S End Date: %-10S No of Days %-5d", dateFormat.format(getStartDate()), dateFormat.format(getEndDate()), daysBetween(getStartDate(), getEndDate())));
+        sb.append(String.format("Start Date: %-20S", dateFormat.format(getStartDate())));
+        sb.append(System.getProperty("line.separator"));
+        sb.append(String.format("End Date: %-20S", dateFormat.format(getEndDate())));
+        sb.append(System.getProperty("line.separator"));
+        sb.append(String.format("No. of Days: %-5d",daysBetween(getStartDate(), getEndDate())));
         sb.append(System.getProperty("line.separator"));
         sb.append(String.format("Total Cost: %-5f", getCost()));
 
