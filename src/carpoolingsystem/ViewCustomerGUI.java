@@ -79,6 +79,7 @@ public class ViewCustomerGUI extends javax.swing.JFrame {
 
         buttonGroup1 = new javax.swing.ButtonGroup();
         buttonGroup2 = new javax.swing.ButtonGroup();
+        buttonGroup3 = new javax.swing.ButtonGroup();
         jLabel1 = new javax.swing.JLabel();
         jPanel1 = new javax.swing.JPanel();
         jLabel3 = new javax.swing.JLabel();
@@ -143,8 +144,10 @@ public class ViewCustomerGUI extends javax.swing.JFrame {
         tbAddress.setRows(5);
         jScrollPane1.setViewportView(tbAddress);
 
+        buttonGroup3.add(rbFemale);
         rbFemale.setText("Female");
 
+        buttonGroup3.add(rbMale);
         rbMale.setText("Male");
 
         btModifyCustomer.setText("Modify Customer");
@@ -482,6 +485,7 @@ public class ViewCustomerGUI extends javax.swing.JFrame {
     private javax.swing.JButton btModifyCustomer;
     private javax.swing.ButtonGroup buttonGroup1;
     private javax.swing.ButtonGroup buttonGroup2;
+    private javax.swing.ButtonGroup buttonGroup3;
     private org.jdesktop.swingx.JXDatePicker dpDOB;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
