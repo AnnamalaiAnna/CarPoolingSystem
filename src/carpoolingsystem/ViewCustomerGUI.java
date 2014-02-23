@@ -434,8 +434,9 @@ public class ViewCustomerGUI extends javax.swing.JFrame {
             AffectedCustomersGUI afc = new AffectedCustomersGUI(affectedCustomers, searchCustomerGUI);
             afc.setVisible(true);
             this.dispose();
+        } else {
+            goBack();
         }
-        goBack();
     }//GEN-LAST:event_btDeleteCustomerActionPerformed
 
     private void btModifyCustomerActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btModifyCustomerActionPerformed

@@ -369,8 +369,9 @@ public class SearchRideGUI extends javax.swing.JFrame {
                 AffectedCustomersGUI afc = new AffectedCustomersGUI(affectedCustomers, homegui);
                 afc.setVisible(true);
                 this.dispose();
+            } else {
+                goBack();
             }
-            goBack();
         }
     }//GEN-LAST:event_btModifyRideActionPerformed
 
@@ -381,8 +382,9 @@ public class SearchRideGUI extends javax.swing.JFrame {
             AffectedCustomersGUI afc = new AffectedCustomersGUI(affectedCustomers, homegui);
             afc.setVisible(true);
             this.dispose();
+        } else {
+            goBack();
         }
-        goBack();
     }//GEN-LAST:event_btDeleteRideActionPerformed
 
     private void btPrintReceiptActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btPrintReceiptActionPerformed
