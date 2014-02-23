@@ -239,7 +239,7 @@ public class SearchCustomerGUI extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(null, "No Result Found", "INFO", JOptionPane.INFORMATION_MESSAGE);
         } else {
             for (Customer customer : returnList) {
-                m.addElement(customer.getCustomerId() + "\t" + customer.getfName() + "\t" + customer.getlName());
+                m.addElement(customer.toString());  
             }
         }
     }//GEN-LAST:event_btSearchActionPerformed

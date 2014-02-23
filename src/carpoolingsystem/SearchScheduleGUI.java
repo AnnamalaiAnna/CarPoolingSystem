@@ -277,7 +277,19 @@ public class SearchScheduleGUI extends javax.swing.JFrame {
         goBack();
     }//GEN-LAST:event_formWindowClosing
 
+    private void clearFields() {
+        tbDriverName.setText("");
+        tbDriverId.setText("");
+        tbNumberPlate.setText("");
+        tbOrigin.setText("");
+        tbDestination.setText("");
+        tbCost.setText("");
+        dpStartDate.setDate(null);
+        dpEndDate.setDate(null);
+    }
+
     private void btSearchActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btSearchActionPerformed
+        clearFields();
         if (tbPassengerId.getText().equals("")) {
             JOptionPane.showMessageDialog(null, "Please Enter Passenger Id");
         } else {
@@ -327,7 +339,15 @@ public class SearchScheduleGUI extends javax.swing.JFrame {
                 && dpStartDate.getDate().compareTo(dpEndDate.getDate()) > 0) {
             JOptionPane.showMessageDialog(null, "Please Enter Valid Dates");
         } else {
+            tbCost.setText(Double.toString(schedule.calculateCost(dpStartDate.getDate(), dpEndDate.getDate())));
+
+            int dialogResult = JOptionPane.showConfirmDialog(null, "Verify cost and click YES to create Schedule", "ALERT", JOptionPane.YES_NO_OPTION);
+            if (dialogResult == JOptionPane.NO_OPTION) {
+                return;
+            }
             schedule.modifySchedule(dpStartDate.getDate(), dpEndDate.getDate());
+            schedule.printReceipt(passenger);
+            goBack();
         }
     }//GEN-LAST:event_btModifyActionPerformed
 

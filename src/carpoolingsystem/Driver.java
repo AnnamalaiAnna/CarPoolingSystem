@@ -97,5 +97,11 @@ public class Driver extends Customer {
         this.disableCustomer();
         return returnList;
     }
+    
+    @Override
+    public String toString(){
+    String ret = String.format("%-90s%-20s",super.toString(),"Driver");    
+    return ret;
+    }
 
 }

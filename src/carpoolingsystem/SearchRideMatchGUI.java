@@ -233,7 +233,7 @@ public class SearchRideMatchGUI extends javax.swing.JFrame {
                 JOptionPane.showMessageDialog(null, "No Result Found", "INFO", JOptionPane.INFORMATION_MESSAGE);
             } else {
                 for (Ride ride : availableRides) {
-                    m.addElement(ride.getDriver().getCustomerId() + "\t" + ride.getDriver().getfName() + "\t" + ride.getDriver().getlName());
+                    m.addElement(String.format("%-20d%-40s%-30d", ride.getDriver().getCustomerId(), ride.getDriver().getName(), ride.getCapacity()));
                 }
             }
         } else {

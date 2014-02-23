@@ -72,4 +72,11 @@ public class Passenger extends Customer {
         this.disableCustomer();
         return null;
     }
+    
+    @Override
+    public String toString(){
+    String ret = String.format("%-90s%-20s",super.toString(),"Passenger");    
+    return ret;
+    }
+    
 }

@@ -133,8 +133,10 @@ public class Ride implements Serializable, Receipt {
             if (schedule.getStartDate().compareTo(sDate) >= 0 && schedule.getEndDate().compareTo(eDate) <= 0) {
                 continue;
             } else {
-                returnList.add(schedule.getPassenger());
-                schedule.deactivateSchedule();
+                if (schedule.getStatus()) {
+                    returnList.add(schedule.getPassenger());
+                    schedule.deactivateSchedule();
+                }
             }
         }
         return returnList;
@@ -173,10 +175,10 @@ public class Ride implements Serializable, Receipt {
         sb.append(System.getProperty("line.separator"));
         sb.append(String.format("Origin: %-20SDestination: %-20S\n", getOrigin(), getDestination()));
         sb.append(System.getProperty("line.separator"));
-        DateFormat dateFormat = new SimpleDateFormat("mm-dd-yyyy");
+        DateFormat dateFormat = new SimpleDateFormat("MM-dd-yyyy");
         sb.append(String.format("Start Date: %-20SEnd Date: %-20S\n", dateFormat.format(getStartDate()), dateFormat.format(getEndDate())));
         Date today = new Date();
-        dateFormat = new SimpleDateFormat("yyyy-mm-dd_hh-mm-ss");
+        dateFormat = new SimpleDateFormat("yyyy-MM-dd_hh-mm-ss");
         String fileName = ".\\Receipts\\Ride_Receipt_" + dateFormat.format(today) + ".txt";
         PrintWriter writer;
         try {

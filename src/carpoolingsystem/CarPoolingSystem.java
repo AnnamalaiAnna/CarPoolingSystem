@@ -173,7 +173,7 @@ public class CarPoolingSystem implements Serializable {
                 }
                 Ride ride = driver.getRideHistory().getLast();
                 if (ride.getStatus()) {
-                    if ((ride.getOrigin()).equals(origin) && (ride.getDestination()).equals(dest)) {
+                    if ((ride.getOrigin().compareToIgnoreCase(origin) == 0) && (ride.getDestination().compareToIgnoreCase(dest) == 0)) {
                         if (ride.verifyAvailability(sDate, eDate)) {
                             returnList.add(ride);
                         }
@@ -222,6 +222,7 @@ public class CarPoolingSystem implements Serializable {
             writer = new PrintWriter(new File(dir, fileName));
             writer.println(sb.toString());
             writer.close();
+            JOptionPane.showMessageDialog(null, "Report generated: " + fileName, "INFORMATION", JOptionPane.INFORMATION_MESSAGE);
 //            if (Desktop.isDesktopSupported()) {
 //                Desktop.getDesktop().open(new File(dir, fileName));
 //            }

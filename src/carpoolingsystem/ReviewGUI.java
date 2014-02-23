@@ -47,11 +47,16 @@ public class ReviewGUI extends javax.swing.JFrame {
         int index = source.getSelectedIndex();
         if (index >= 0) {
             customerReviewee = returnList.get(index);
-            review = customerReviewee.searchReview(customerReviewer);
-            if (review != null) {
+            if (customerReviewee.searchReview(customerReviewer) != null) {
+                review = customerReviewee.searchReview(customerReviewer);
                 tbSummary.setText(review.getSummary());
                 tbComments.setText(review.getComments());
                 sbRatings.setValue(review.getRating());
+            } else {
+                review = null;
+                tbSummary.setText("");
+                tbComments.setText("");
+                sbRatings.setValue(5);
             }
         }
     }
@@ -220,55 +225,74 @@ public class ReviewGUI extends javax.swing.JFrame {
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
+    private void resetFields() {
+        customerReviewer = null;
+        customerReviewee = null;
+        returnList = new LinkedList<Customer>();
+        tbSummary.setText("");
+        tbComments.setText("");
+        sbRatings.setValue(5);
+        review = null;
+    }
+
     private void btFetchActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btFetchActionPerformed
         DefaultListModel m = (DefaultListModel) (lbAssociatedCustomers.getModel());
-        String customerId = tbCustomerId.getText();
+        m.clear();
+        resetFields();
 
-        CustomerList = cps.searchCustomer(Long.parseLong(customerId), null, null, null, null);
-        if (CustomerList.isEmpty()) {
-            JOptionPane.showMessageDialog(null, "No Customer Found", "INFO", JOptionPane.INFORMATION_MESSAGE);
-        } else if (CustomerList.getFirst().getCustomerStatus() == true) {
-            customerReviewer = CustomerList.getFirst();
-            if (customerReviewer instanceof Driver) {
-                Driver driver = (Driver) customerReviewer;
-                
-                if (!(driver.getRideHistory().isEmpty())) {
-                    Ride activeRide = driver.getRideHistory().getLast();
-                    if (activeRide.getStatus()) {
-                        for (Schedule schedule : activeRide.getScheduleList()) {
-                            if (schedule.getStatus()) {
-                                returnList.add(schedule.getPassenger());
+        if (tbCustomerId.getText().equals("")) {
+            JOptionPane.showMessageDialog(null, "Please Enter Customer Id");
+        } else {
+            String customerId = tbCustomerId.getText();
+
+            CustomerList = cps.searchCustomer(Long.parseLong(customerId), null, null, null, null);
+            if (CustomerList.isEmpty()) {
+                JOptionPane.showMessageDialog(null, "No Customer Found", "INFO", JOptionPane.INFORMATION_MESSAGE);
+            } else if (CustomerList.getFirst().getCustomerStatus() == true) {
+                customerReviewer = CustomerList.getFirst();
+                if (customerReviewer instanceof Driver) {
+                    Driver driver = (Driver) customerReviewer;
+
+                    if (!(driver.getRideHistory().isEmpty())) {
+                        Ride activeRide = driver.getRideHistory().getLast();
+                        if (activeRide.getStatus()) {
+                            LinkedList<Schedule> scheduleList = activeRide.getScheduleList();
+                            if (scheduleList.isEmpty()) {
+                                JOptionPane.showMessageDialog(null, "No schedules found in ride", "INFO", JOptionPane.INFORMATION_MESSAGE);
+
                             }
+                            for (Schedule schedule : scheduleList) {
+                                if (schedule.getStatus()) {
+                                    returnList.add(schedule.getPassenger());
+                                }
+                            }
+                        } else {
+                            JOptionPane.showMessageDialog(null, "No active ride found", "INFO", JOptionPane.INFORMATION_MESSAGE);
                         }
+                    } else {
+                        JOptionPane.showMessageDialog(null, "No associated Passengers found", "INFO", JOptionPane.INFORMATION_MESSAGE);
                     }
                 } else {
-                    JOptionPane.showMessageDialog(null, "No associated Passengers found", "INFO", JOptionPane.INFORMATION_MESSAGE);
-                }
-            } else if (customerReviewer instanceof Passenger) {
-                Passenger passenger = (Passenger) customerReviewer;
-                if (!(passenger.getScheduleHistory().isEmpty())) {
-                    Schedule activeSchedule = passenger.getScheduleHistory().getLast();
-                    if (activeSchedule.getStatus()) {
-                        returnList.add(activeSchedule.getRide().getDriver());
+                    Passenger passenger = (Passenger) customerReviewer;
+                    if (!(passenger.getScheduleHistory().isEmpty())) {
+                        Schedule activeSchedule = passenger.getScheduleHistory().getLast();
+                        if (activeSchedule.getStatus()) {
+                            returnList.add(activeSchedule.getRide().getDriver());
+                        } else {
+                            JOptionPane.showMessageDialog(null, "No active schedule found", "INFO", JOptionPane.INFORMATION_MESSAGE);
+                        }
+                    } else {
+                        JOptionPane.showMessageDialog(null, "No associated Drivers found", "INFO", JOptionPane.INFORMATION_MESSAGE);
                     }
-                } else {
-                    JOptionPane.showMessageDialog(null, "No associated Drivers found", "INFO", JOptionPane.INFORMATION_MESSAGE);
                 }
+                for (Customer customer : returnList) {
+                    m.addElement(customer.getCustomerId() + "\t" + customer.getfName() + "\t" + customer.getlName());
+                }
+            } else {
+                JOptionPane.showMessageDialog(null, "No active customers found", "INFO", JOptionPane.INFORMATION_MESSAGE);
             }
-            for (Customer customer : returnList) {
-                m.addElement(customer.getCustomerId() + "/t" + customer.getfName() + "/t" + customer.getlName());
-            }
-
         }
-        /*       customerReviewee = null;
-         review = customerReviewee.searchReview(customerReviewer);
-         if (review != null) {
-         tbSummary.setText(review.getSummary());
-         tbComments.setText(review.getComments());
-         sbRatings.setValue(review.getRating());
     }//GEN-LAST:event_btFetchActionPerformed
-    */
-    }
 
     private void goBack() {
         homegui.setEnabled(true);
@@ -288,15 +312,18 @@ public class ReviewGUI extends javax.swing.JFrame {
     }//GEN-LAST:event_formWindowClosing
 
     private void btSubmitActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btSubmitActionPerformed
-        if (((tbSummary.getText()).length()) == 0 || ((tbComments.getText()).length()) == 0) {
+        if (tbSummary.getText().length() == 0 || tbComments.getText().length() == 0) {
             JOptionPane.showMessageDialog(null, "Enter all the fields", "INFO", JOptionPane.INFORMATION_MESSAGE);
+        } else if (customerReviewee == null) {
+            JOptionPane.showMessageDialog(null, "Select a associated customer", "INFO", JOptionPane.INFORMATION_MESSAGE);
         } else {
             if (review == null) {
-                Review review = new Review(tbSummary.getText(), tbComments.getText(), sbRatings.getValue(), customerReviewee);
+                Review review = new Review(tbSummary.getText(), tbComments.getText(), sbRatings.getValue(), customerReviewer);
                 customerReviewee.getReviewList().add(review);
             } else {
                 review.modifyReview(tbSummary.getText(), tbComments.getText(), sbRatings.getValue());
             }
+            goBack();
         }
     }//GEN-LAST:event_btSubmitActionPerformed
 
@@ -356,8 +383,8 @@ public class ReviewGUI extends javax.swing.JFrame {
     private CarPoolingSystem cps;
     private HomeGUI homegui;
     private LinkedList<Customer> CustomerList = new LinkedList<Customer>();
-    private LinkedList<Customer> returnList = new LinkedList<Customer>();
+    private LinkedList<Customer> returnList = null;
     private Customer customerReviewee = null;
     private Customer customerReviewer = null;
-    private Review review = new Review();
+    private Review review = null;
 }

@@ -5,20 +5,22 @@
  */
 package carpoolingsystem;
 
+import java.io.Serializable;
+
 /**
  *
  * @author Radhika
  */
-public class Review {
+public class Review implements Serializable {
 
-    String summary;
-    String comments;
-    int rating;
-    Customer customer;
+    private String summary;
+    private String comments;
+    private int rating;
+    private Customer customer;
 
     public String getComments() {
         return comments;
-}
+    }
 
     public void setComments(String comments) {
         this.comments = comments;
@@ -53,11 +55,11 @@ public class Review {
         this.rating = rating;
         this.customer = customer;
     }
-   public void modifyReview(String summary, String comments, int rating)
-   {
+
+    public void modifyReview(String summary, String comments, int rating) {
         setSummary(summary);
         setComments(comments);
         setRating(rating);
-       
-   }
+
+    }
 }
