@@ -346,6 +346,7 @@ public class SearchRideGUI extends javax.swing.JFrame {
             } else {
                 ride = new Ride(tbOrigin.getText(), tbDestination.getText(), Integer.parseInt(tbCapacity.getText()), dpStartDate.getDate(), dpEndDate.getDate(), driver);
                 driver.addRide(ride);
+                JOptionPane.showMessageDialog(null, "Ride successfully created", "INFORMATION", JOptionPane.INFORMATION_MESSAGE);
                 goBack();
             }
         }
@@ -363,17 +364,20 @@ public class SearchRideGUI extends javax.swing.JFrame {
             LinkedList<Schedule> returnList = ride.getAffectedSchedules(dpStartDate.getDate(), dpEndDate.getDate());
             ride = ride.modifyNRecreate(dpStartDate.getDate(), dpEndDate.getDate());
             driver.addRide(ride);
+            JOptionPane.showMessageDialog(null, "Ride successfully modified", "INFORMATION", JOptionPane.INFORMATION_MESSAGE);
             goBack();
         }
     }//GEN-LAST:event_btModifyRideActionPerformed
 
     private void btDeleteRideActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btDeleteRideActionPerformed
         ride.deactivateRide();
+        JOptionPane.showMessageDialog(null, "Ride successfully deleted", "INFORMATION", JOptionPane.INFORMATION_MESSAGE);
         goBack();
     }//GEN-LAST:event_btDeleteRideActionPerformed
 
     private void btPrintReceiptActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btPrintReceiptActionPerformed
         ride.printReceipt(driver);
+        JOptionPane.showMessageDialog(null, "Receipt successfully generated in receipt folder", "INFORMATION", JOptionPane.INFORMATION_MESSAGE);
         goBack();
     }//GEN-LAST:event_btPrintReceiptActionPerformed
 

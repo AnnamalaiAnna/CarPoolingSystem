@@ -58,30 +58,39 @@ public class AffectedCustomersGUI extends javax.swing.JFrame {
         jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel1.setText("Please Notify the Following Customers about Schedule Change");
 
+        jPanel1.setEnabled(false);
+
         jLabel5.setText("Origin");
 
         jLabel6.setText("Destination");
-
-        jTextField4.setEnabled(false);
-
-        jTextField5.setEnabled(false);
 
         jLabel9.setText("Start Date");
 
         jLabel10.setText("End Date");
 
-        jXDatePicker2.setEnabled(false);
-
-        jXDatePicker1.setEnabled(false);
-
         jLabel7.setText("Message to Notify");
 
         jTextField1.setText("Due to change in Ride, all the following schedules are cancelled.");
 
+        jList1.setModel(new javax.swing.AbstractListModel() {
+            String[] strings = { "Rajesh", "Nagul", "Radhika" };
+            public int getSize() { return strings.length; }
+            public Object getElementAt(int i) { return strings[i]; }
+        });
         jScrollPane1.setViewportView(jList1);
 
+        jList2.setModel(new javax.swing.AbstractListModel() {
+            String[] strings = { "rajesh@company.com", "nagul@company.com", "radhika@gmail.com" };
+            public int getSize() { return strings.length; }
+            public Object getElementAt(int i) { return strings[i]; }
+        });
         jScrollPane2.setViewportView(jList2);
 
+        jList3.setModel(new javax.swing.AbstractListModel() {
+            String[] strings = { "Natarajan", "Subramanian", "Bhala" };
+            public int getSize() { return strings.length; }
+            public Object getElementAt(int i) { return strings[i]; }
+        });
         jScrollPane3.setViewportView(jList3);
 
         jLabel8.setText("Email");
@@ -91,6 +100,11 @@ public class AffectedCustomersGUI extends javax.swing.JFrame {
         jLabel12.setText("Ph Number");
 
         jButton1.setText("Ok");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -199,6 +213,10 @@ public class AffectedCustomersGUI extends javax.swing.JFrame {
         pack();
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jButton1ActionPerformed
 
     /**
      * @param args the command line arguments
