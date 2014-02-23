@@ -131,7 +131,7 @@ public class Ride implements Serializable, Receipt {
         LinkedList<Schedule> returnList = new LinkedList<Schedule>();
         for (Schedule schedule : scheduleList) {
             if (schedule.getStartDate().compareTo(sDate) >= 0 && schedule.getEndDate().compareTo(eDate) <= 0) {
-
+                continue;
             } else {
                 returnList.add(schedule);
                 schedule.deactivateSchedule();
