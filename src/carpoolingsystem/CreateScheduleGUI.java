@@ -76,6 +76,11 @@ public class CreateScheduleGUI extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setResizable(false);
+        addWindowListener(new java.awt.event.WindowAdapter() {
+            public void windowClosing(java.awt.event.WindowEvent evt) {
+                formWindowClosing(evt);
+            }
+        });
 
         jLabel1.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
         jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
@@ -278,6 +283,10 @@ public class CreateScheduleGUI extends javax.swing.JFrame {
             }
         }
     }//GEN-LAST:event_btCreateActionPerformed
+
+    private void formWindowClosing(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowClosing
+        goBack();
+    }//GEN-LAST:event_formWindowClosing
 
     private void goBack() {
         searchRideMatchGUI.getListModal().removeAllElements();

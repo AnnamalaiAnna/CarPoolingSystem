@@ -298,6 +298,7 @@ public class SearchRideGUI extends javax.swing.JFrame {
     }//GEN-LAST:event_tbCustomerIdActionPerformed
 
     private void btSearchActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btSearchActionPerformed
+        clearFields();
         if (tbCustomerId.getText().equals("")) {
             JOptionPane.showMessageDialog(null, "Please Enter Customer Id");
         } else {
@@ -341,7 +342,8 @@ public class SearchRideGUI extends javax.swing.JFrame {
         if (tbOrigin.getText().equals("") || tbDestination.getText().equals("") || tbCapacity.getText().equals("")) {
             JOptionPane.showMessageDialog(null, "Please Enter All the Details");
         } else {
-            if (dpStartDate.getDate().compareTo(dpEndDate.getDate()) > 0) {
+            Date Today = new Date();
+            if (dpStartDate.getDate().compareTo(dpEndDate.getDate()) > 0 || dpStartDate.getDate().compareTo(Today) < 0) {
                 JOptionPane.showMessageDialog(null, "Invalid Dates");
             } else {
                 ride = new Ride(tbOrigin.getText(), tbDestination.getText(), Integer.parseInt(tbCapacity.getText()), dpStartDate.getDate(), dpEndDate.getDate(), driver);
@@ -357,8 +359,8 @@ public class SearchRideGUI extends javax.swing.JFrame {
     }//GEN-LAST:event_dpStartDateActionPerformed
 
     private void btModifyRideActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btModifyRideActionPerformed
-        if (ride.getStartDate() == dpStartDate.getDate() && ride.getEndDate() == dpEndDate.getDate()
-                && dpStartDate.getDate().compareTo(dpEndDate.getDate()) > 0) {
+        Date Today = new Date();
+        if ((ride.getStartDate() == dpStartDate.getDate() && ride.getEndDate() == dpEndDate.getDate()) || dpStartDate.getDate().compareTo(dpEndDate.getDate()) > 0 || dpStartDate.getDate().compareTo(Today) < 0) {
             JOptionPane.showMessageDialog(null, "Please Enter Valid Dates");
         } else {
             LinkedList<Customer> affectedCustomers = ride.getAffectedSchedules(dpStartDate.getDate(), dpEndDate.getDate());
@@ -387,10 +389,29 @@ public class SearchRideGUI extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_btDeleteRideActionPerformed
 
+    private void clearFields() {
+        tbDriverName.setText("");
+        tbDriverLicense.setText("");
+        tbNumberPlate.setText("");
+        tbOrigin.setText("");
+        tbDestination.setText("");
+        tbCapacity.setText("");
+        dpStartDate.setDate(null);
+        dpEndDate.setDate(null);
+        driver = null;
+        returnList = null;
+        ride = null;
+
+    }
+
     private void btPrintReceiptActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btPrintReceiptActionPerformed
-        ride.printReceipt(driver);
-        JOptionPane.showMessageDialog(null, "Receipt successfully generated in receipt folder", "INFORMATION", JOptionPane.INFORMATION_MESSAGE);
-        goBack();
+        if (ride != null) {
+            ride.printReceipt(driver);
+            JOptionPane.showMessageDialog(null, "Receipt successfully generated in receipt folder", "INFORMATION", JOptionPane.INFORMATION_MESSAGE);
+            goBack();
+        } else {
+            JOptionPane.showMessageDialog(null, "No ride found", "Error", JOptionPane.ERROR);
+        }
     }//GEN-LAST:event_btPrintReceiptActionPerformed
 
     private void goBack() {

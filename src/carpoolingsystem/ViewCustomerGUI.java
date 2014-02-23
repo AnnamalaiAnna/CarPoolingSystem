@@ -158,6 +158,7 @@ public class ViewCustomerGUI extends javax.swing.JFrame {
         });
 
         btDeleteCustomer.setText("Delete Customer");
+        btDeleteCustomer.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         btDeleteCustomer.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btDeleteCustomerActionPerformed(evt);
@@ -265,12 +266,6 @@ public class ViewCustomerGUI extends javax.swing.JFrame {
                         .addGap(12, 12, 12)))
                 .addGap(18, 18, 18)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(jLabel14)
-                        .addGap(18, 18, 18)
-                        .addComponent(rbSmokingPrefYes)
-                        .addGap(18, 18, 18)
-                        .addComponent(rbSmokingPrefNo))
                     .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                         .addGroup(jPanel1Layout.createSequentialGroup()
                             .addComponent(jLabel11)
@@ -290,7 +285,15 @@ public class ViewCustomerGUI extends javax.swing.JFrame {
                         .addGap(37, 37, 37)
                         .addComponent(rbPassenger))
                     .addComponent(jLabel12, javax.swing.GroupLayout.PREFERRED_SIZE, 84, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btDeleteCustomer, javax.swing.GroupLayout.PREFERRED_SIZE, 121, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                            .addComponent(btDeleteCustomer, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel1Layout.createSequentialGroup()
+                                .addComponent(jLabel14)
+                                .addGap(18, 18, 18)
+                                .addComponent(rbSmokingPrefYes)))
+                        .addGap(18, 18, 18)
+                        .addComponent(rbSmokingPrefNo)))
                 .addContainerGap(19, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)

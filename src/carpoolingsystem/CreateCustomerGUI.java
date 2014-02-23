@@ -378,20 +378,22 @@ public class CreateCustomerGUI extends javax.swing.JFrame {
     }//GEN-LAST:event_rbDriverActionPerformed
 
     private void tbCancelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tbCancelActionPerformed
-        // TODO add your handling code here:
         homegui.setEnabled(true);
         this.dispose();
     }//GEN-LAST:event_tbCancelActionPerformed
 
     private void tbClearFieldsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tbClearFieldsActionPerformed
-        // TODO add your handling code here:
         tbFName.setText("");
         tbLName.setText("");
         tbEmail.setText("");
         tbPhNum.setText("");
         taAddress.setText("");
+        tbDlLicenseNo.setText("");
+        tbCarNum.setText("");
+        tbInsurance.setText("");
         buttonGroup1.clearSelection();
         buttonGroup2.clearSelection();
+        buttonGroup3.clearSelection();
         dpDOB.setDate(null);
     }//GEN-LAST:event_tbClearFieldsActionPerformed
 
@@ -426,6 +428,7 @@ public class CreateCustomerGUI extends javax.swing.JFrame {
         if (customer != null) {
             cps.addCustomer(customer);
             homegui.setEnabled(true);
+            JOptionPane.showMessageDialog(null, "Customer successfully created", "INFORMATION", JOptionPane.INFORMATION_MESSAGE);
             this.dispose();
         } else {
             JOptionPane.showMessageDialog(null, "Invalid Details!", "ERROR", JOptionPane.ERROR_MESSAGE);

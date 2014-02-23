@@ -62,10 +62,12 @@ public class Schedule implements Serializable, Receipt {
 
     public void setStartDate(Date startDate) {
         this.startDate = startDate;
+        this.cost = this.calculateCost(startDate, endDate);
     }
 
     public void setEndDate(Date endDate) {
         this.endDate = endDate;
+        this.cost = this.calculateCost(startDate, endDate);
     }
 
     public Passenger getPassenger() {
@@ -137,13 +139,13 @@ public class Schedule implements Serializable, Receipt {
         sb.append(System.getProperty("line.separator"));
         sb.append(String.format("Origin: %-20SDestination: %-20S", ride.getOrigin(), ride.getDestination()));
         sb.append(System.getProperty("line.separator"));
-        DateFormat dateFormat = new SimpleDateFormat("mm-dd-yyyy");
+        DateFormat dateFormat = new SimpleDateFormat("MM-dd-yyyy");
         sb.append(String.format("Start Date: %-10S End Date: %-10S No of Days %-5d", dateFormat.format(getStartDate()), dateFormat.format(getEndDate()), daysBetween(getStartDate(), getEndDate())));
         sb.append(System.getProperty("line.separator"));
         sb.append(String.format("Total Cost: %-5f", getCost()));
 
         Date today = new Date();
-        dateFormat = new SimpleDateFormat("yyyy-mm-dd_hh-mm-ss");
+        dateFormat = new SimpleDateFormat("yyyy-MM-dd_hh-mm-ss");
         String fileName = ".\\Receipts\\Schedule_Receipt_" + dateFormat.format(today) + ".txt";
         PrintWriter writer;
         try {

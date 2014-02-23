@@ -36,7 +36,7 @@ abstract public class Customer implements Serializable, Comparable<Customer> {
     public String getfName() {
         return fName;
     }
-    
+
     public String getName() {
         return fName + " " + lName;
     }
@@ -165,14 +165,23 @@ abstract public class Customer implements Serializable, Comparable<Customer> {
     }
 
     public Review searchReview(Customer reviewer) {
-        Review returnReview = new Review();
-        for (Review review : reviewList) {
-            if (review.customer.equals(reviewer)) {
-                returnReview = review;
-                break;
+        Review returnReview = null;
+        if (!reviewList.isEmpty()) {
+            for (Review review : reviewList) {
+                if (review.getCustomer().equals(reviewer)) {
+                    returnReview = review;
+                    break;
+                }
             }
         }
         return returnReview;
+
+    }
+
+    @Override
+    public String toString(){
+    String ret = String.format("%-20s%-40s%-30s",this.getCustomerId(),this.getName(),this.getMobile());    
+    return ret;
     }
     
     public void addReview() {
