@@ -197,7 +197,6 @@ public class CarPoolingSystem implements Serializable {
 //        }
 //        return false;
 //    }
-
     private void doSorting(SortType sortType) {
         if (sortType == SortType.ByFName) {
             Collections.sort(customerlist, FirstNameComparator);
@@ -288,7 +287,7 @@ public class CarPoolingSystem implements Serializable {
                     if ((sortStatus == SortStatus.Active && !schedule.getStatus()) || (sortStatus == SortStatus.InActive && schedule.getStatus())) {
                         continue;
                     }
-                    if ((startDate != null) && (endDate != null) && ((startDate.compareTo(schedule.getRide().getStartDate()) > 0) || (endDate.compareTo(schedule.getRide().getEndDate()) < 0))) {
+                    if ((startDate != null) && (endDate != null) && ((startDate.compareTo(schedule.getStartDate()) > 0) || (endDate.compareTo(schedule.getEndDate()) < 0))) {
                         continue;
                     }
                     if ((origin.length() > 0) && (destination.length() > 0) && ((origin.compareToIgnoreCase(schedule.getRide().getOrigin()) != 0) || (destination.compareToIgnoreCase(schedule.getRide().getDestination()) != 0))) {
