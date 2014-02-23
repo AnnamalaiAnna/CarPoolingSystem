@@ -264,7 +264,7 @@ public class CreateScheduleGUI extends javax.swing.JFrame {
             } else {
                 Passenger passenger = (Passenger) returnList.getFirst();
                 Schedule schedule = new Schedule(dpStartDate.getDate(), dpEndDate.getDate(), passenger, ride);
-                tbCost.setText(Double.toString(schedule.getCost()));
+                tbCost.setText(schedule.getCostStr());
 
                 int dialogResult = JOptionPane.showConfirmDialog(null, "Verify cost and click YES to create Schedule", "ALERT", JOptionPane.YES_NO_OPTION);
                 if (dialogResult == JOptionPane.NO_OPTION) {

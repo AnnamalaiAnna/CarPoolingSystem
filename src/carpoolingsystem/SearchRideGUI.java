@@ -361,18 +361,26 @@ public class SearchRideGUI extends javax.swing.JFrame {
                 && dpStartDate.getDate().compareTo(dpEndDate.getDate()) > 0) {
             JOptionPane.showMessageDialog(null, "Please Enter Valid Dates");
         } else {
-            LinkedList<Schedule> returnList = ride.getAffectedSchedules(dpStartDate.getDate(), dpEndDate.getDate());
+            LinkedList<Customer> affectedCustomers = ride.getAffectedSchedules(dpStartDate.getDate(), dpEndDate.getDate());
             ride = ride.modifyNRecreate(dpStartDate.getDate(), dpEndDate.getDate());
             driver.addRide(ride);
             JOptionPane.showMessageDialog(null, "Ride successfully modified", "INFORMATION", JOptionPane.INFORMATION_MESSAGE);
-            goBack();
+            if ((affectedCustomers != null) && (!affectedCustomers.isEmpty())) {
+                AffectedCustomersGUI afc = new AffectedCustomersGUI(affectedCustomers, homegui);
+                afc.setVisible(true);
+            }
+            this.dispose();
         }
     }//GEN-LAST:event_btModifyRideActionPerformed
 
     private void btDeleteRideActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btDeleteRideActionPerformed
-        ride.deactivateRide();
+        LinkedList<Customer> affectedCustomers = ride.deactivateRide();
         JOptionPane.showMessageDialog(null, "Ride successfully deleted", "INFORMATION", JOptionPane.INFORMATION_MESSAGE);
-        goBack();
+        if ((affectedCustomers != null) && (!affectedCustomers.isEmpty())) {
+            AffectedCustomersGUI afc = new AffectedCustomersGUI(affectedCustomers, homegui);
+            afc.setVisible(true);
+        }
+        this.dispose();
     }//GEN-LAST:event_btDeleteRideActionPerformed
 
     private void btPrintReceiptActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btPrintReceiptActionPerformed

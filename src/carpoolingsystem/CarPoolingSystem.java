@@ -37,7 +37,7 @@ import javax.swing.JOptionPane;
  */
 public class CarPoolingSystem implements Serializable {
 
-    static double costPerDay = 5.2;
+    static float costPerDay = 5.2f;
     long custIdGenerator;
     public LinkedList<Customer> customerlist = new LinkedList<Customer>();
 

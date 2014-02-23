@@ -5,17 +5,41 @@
  */
 package carpoolingsystem;
 
+import java.util.LinkedList;
+import javax.swing.DefaultListModel;
+import javax.swing.JFrame;
+
 /**
  *
  * @author Annamalai
  */
 public class AffectedCustomersGUI extends javax.swing.JFrame {
 
+    JFrame frame;
+
     /**
      * Creates new form AffectedCustomers
      */
     public AffectedCustomersGUI() {
         initComponents();
+    }
+
+    public AffectedCustomersGUI(LinkedList<Customer> affectedCustomers, JFrame frame) {
+        this();
+        this.frame = frame;
+        DefaultListModel lName = (DefaultListModel) (lstName.getModel());
+        DefaultListModel lPhNum = (DefaultListModel) (lstPhNumber.getModel());
+        DefaultListModel lEmail = (DefaultListModel) (lstEmail.getModel());
+        for (Customer customer : affectedCustomers) {
+            lName.addElement(customer.getName());
+            lPhNum.addElement(customer.getMobile());
+            lEmail.addElement(customer.getEmail());
+        }
+        Ride tempRide = ((Passenger) affectedCustomers.getFirst()).getScheduleHistory().getLast().getRide();
+        this.tbOrigin.setText(tempRide.getOrigin());
+        this.tbDestination.setText(tempRide.getDestination());
+        this.tbStartDate.setDate(tempRide.getStartDate());
+        this.tbEndDate.setDate(tempRide.getEndDate());
     }
 
     /**
@@ -31,27 +55,32 @@ public class AffectedCustomersGUI extends javax.swing.JFrame {
         jPanel1 = new javax.swing.JPanel();
         jLabel5 = new javax.swing.JLabel();
         jLabel6 = new javax.swing.JLabel();
-        jTextField4 = new javax.swing.JTextField();
-        jTextField5 = new javax.swing.JTextField();
+        tbOrigin = new javax.swing.JTextField();
+        tbDestination = new javax.swing.JTextField();
         jLabel9 = new javax.swing.JLabel();
         jLabel10 = new javax.swing.JLabel();
-        jXDatePicker2 = new org.jdesktop.swingx.JXDatePicker();
-        jXDatePicker1 = new org.jdesktop.swingx.JXDatePicker();
+        tbStartDate = new org.jdesktop.swingx.JXDatePicker();
+        tbEndDate = new org.jdesktop.swingx.JXDatePicker();
         jLabel7 = new javax.swing.JLabel();
-        jTextField1 = new javax.swing.JTextField();
+        tbMessage = new javax.swing.JTextField();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jList1 = new javax.swing.JList();
+        lstName = new javax.swing.JList();
         jScrollPane2 = new javax.swing.JScrollPane();
-        jList2 = new javax.swing.JList();
+        lstEmail = new javax.swing.JList();
         jScrollPane3 = new javax.swing.JScrollPane();
-        jList3 = new javax.swing.JList();
+        lstPhNumber = new javax.swing.JList();
         jLabel8 = new javax.swing.JLabel();
         jLabel11 = new javax.swing.JLabel();
         jLabel12 = new javax.swing.JLabel();
-        jButton1 = new javax.swing.JButton();
+        btOk = new javax.swing.JButton();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setResizable(false);
+        addWindowListener(new java.awt.event.WindowAdapter() {
+            public void windowClosing(java.awt.event.WindowEvent evt) {
+                formWindowClosing(evt);
+            }
+        });
 
         jLabel1.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(255, 0, 51));
@@ -64,34 +93,31 @@ public class AffectedCustomersGUI extends javax.swing.JFrame {
 
         jLabel6.setText("Destination");
 
+        tbOrigin.setEnabled(false);
+
+        tbDestination.setEnabled(false);
+
         jLabel9.setText("Start Date");
 
         jLabel10.setText("End Date");
 
+        tbStartDate.setEnabled(false);
+
+        tbEndDate.setEnabled(false);
+
         jLabel7.setText("Message to Notify");
 
-        jTextField1.setText("Due to change in Ride, all the following schedules are cancelled.");
+        tbMessage.setText("Due to change in Ride, all the following schedules are cancelled.");
+        tbMessage.setEnabled(false);
 
-        jList1.setModel(new javax.swing.AbstractListModel() {
-            String[] strings = { "Rajesh", "Nagul", "Radhika" };
-            public int getSize() { return strings.length; }
-            public Object getElementAt(int i) { return strings[i]; }
-        });
-        jScrollPane1.setViewportView(jList1);
+        lstName.setModel(new javax.swing.DefaultListModel());
+        jScrollPane1.setViewportView(lstName);
 
-        jList2.setModel(new javax.swing.AbstractListModel() {
-            String[] strings = { "rajesh@company.com", "nagul@company.com", "radhika@gmail.com" };
-            public int getSize() { return strings.length; }
-            public Object getElementAt(int i) { return strings[i]; }
-        });
-        jScrollPane2.setViewportView(jList2);
+        lstEmail.setModel(new javax.swing.DefaultListModel());
+        jScrollPane2.setViewportView(lstEmail);
 
-        jList3.setModel(new javax.swing.AbstractListModel() {
-            String[] strings = { "Natarajan", "Subramanian", "Bhala" };
-            public int getSize() { return strings.length; }
-            public Object getElementAt(int i) { return strings[i]; }
-        });
-        jScrollPane3.setViewportView(jList3);
+        lstPhNumber.setModel(new javax.swing.DefaultListModel());
+        jScrollPane3.setViewportView(lstPhNumber);
 
         jLabel8.setText("Email");
 
@@ -99,10 +125,10 @@ public class AffectedCustomersGUI extends javax.swing.JFrame {
 
         jLabel12.setText("Ph Number");
 
-        jButton1.setText("Ok");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
+        btOk.setText("Ok");
+        btOk.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+                btOkActionPerformed(evt);
             }
         });
 
@@ -113,7 +139,7 @@ public class AffectedCustomersGUI extends javax.swing.JFrame {
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jButton1)
+                    .addComponent(btOk)
                     .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                         .addGroup(jPanel1Layout.createSequentialGroup()
                             .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -121,20 +147,20 @@ public class AffectedCustomersGUI extends javax.swing.JFrame {
                                 .addComponent(jLabel6))
                             .addGap(18, 18, 18)
                             .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                .addComponent(jTextField4, javax.swing.GroupLayout.DEFAULT_SIZE, 203, Short.MAX_VALUE)
-                                .addComponent(jTextField5))
+                                .addComponent(tbOrigin, javax.swing.GroupLayout.DEFAULT_SIZE, 203, Short.MAX_VALUE)
+                                .addComponent(tbDestination))
                             .addGap(18, 18, 18)
                             .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                 .addComponent(jLabel10)
                                 .addComponent(jLabel9))
                             .addGap(23, 23, 23)
                             .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                .addComponent(jXDatePicker2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addComponent(jXDatePicker1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                .addComponent(tbStartDate, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(tbEndDate, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                         .addGroup(jPanel1Layout.createSequentialGroup()
                             .addComponent(jLabel7)
                             .addGap(18, 18, 18)
-                            .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 418, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(tbMessage, javax.swing.GroupLayout.PREFERRED_SIZE, 418, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGroup(jPanel1Layout.createSequentialGroup()
                             .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -157,23 +183,23 @@ public class AffectedCustomersGUI extends javax.swing.JFrame {
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel9)
-                            .addComponent(jXDatePicker2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(tbStartDate, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel10)
-                            .addComponent(jXDatePicker1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                            .addComponent(tbEndDate, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel5)
-                            .addComponent(jTextField4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(tbOrigin, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel6)
-                            .addComponent(jTextField5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                            .addComponent(tbDestination, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
                 .addGap(23, 23, 23)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel7)
-                    .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(tbMessage, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(44, 44, 44)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel11)
@@ -185,7 +211,7 @@ public class AffectedCustomersGUI extends javax.swing.JFrame {
                     .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 51, Short.MAX_VALUE)
-                .addComponent(jButton1)
+                .addComponent(btOk)
                 .addGap(24, 24, 24))
         );
 
@@ -214,9 +240,15 @@ public class AffectedCustomersGUI extends javax.swing.JFrame {
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jButton1ActionPerformed
+    private void btOkActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btOkActionPerformed
+        this.frame.setEnabled(true);
+        this.dispose();
+    }//GEN-LAST:event_btOkActionPerformed
+
+    private void formWindowClosing(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowClosing
+        this.frame.setEnabled(true);
+        this.dispose();
+    }//GEN-LAST:event_formWindowClosing
 
     /**
      * @param args the command line arguments
@@ -254,7 +286,7 @@ public class AffectedCustomersGUI extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton1;
+    private javax.swing.JButton btOk;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
@@ -264,17 +296,17 @@ public class AffectedCustomersGUI extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
-    private javax.swing.JList jList1;
-    private javax.swing.JList jList2;
-    private javax.swing.JList jList3;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JScrollPane jScrollPane3;
-    private javax.swing.JTextField jTextField1;
-    private javax.swing.JTextField jTextField4;
-    private javax.swing.JTextField jTextField5;
-    private org.jdesktop.swingx.JXDatePicker jXDatePicker1;
-    private org.jdesktop.swingx.JXDatePicker jXDatePicker2;
+    private javax.swing.JList lstEmail;
+    private javax.swing.JList lstName;
+    private javax.swing.JList lstPhNumber;
+    private javax.swing.JTextField tbDestination;
+    private org.jdesktop.swingx.JXDatePicker tbEndDate;
+    private javax.swing.JTextField tbMessage;
+    private javax.swing.JTextField tbOrigin;
+    private org.jdesktop.swingx.JXDatePicker tbStartDate;
     // End of variables declaration//GEN-END:variables
 }
