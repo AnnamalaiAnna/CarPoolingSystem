@@ -23,6 +23,11 @@ abstract public class Customer implements Serializable, Comparable<Customer> {
     private String mobile;
     private String address;
     private boolean status;
+    private LinkedList<Review> reviewList = new LinkedList<Review>();
+
+    public LinkedList<Review> getReviewList() {
+        return reviewList;
+    }
 
     public long getCustomerId() {
         return customerId;
@@ -155,10 +160,17 @@ abstract public class Customer implements Serializable, Comparable<Customer> {
         this.status = false;
     }
 
-    public void searchReview() {
-
+    public Review searchReview(Customer reviewer) {
+        Review returnReview = new Review();
+        for (Review review : reviewList) {
+            if (review.customer.equals(reviewer)) {
+                returnReview = review;
+                break;
+            }
+        }
+        return returnReview;
     }
-
+    
     public void addReview() {
 
     }

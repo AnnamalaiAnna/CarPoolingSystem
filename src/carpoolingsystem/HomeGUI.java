@@ -221,7 +221,7 @@ public class HomeGUI extends javax.swing.JFrame {
 
     private void b_reviewActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_b_reviewActionPerformed
         // TODO add your handling code here:
-        SearchRideMatchGUI sc = new SearchRideMatchGUI(cps, this);
+        ReviewGUI sc = new ReviewGUI(cps, this);
         sc.setVisible(true);
     }//GEN-LAST:event_b_reviewActionPerformed
 
